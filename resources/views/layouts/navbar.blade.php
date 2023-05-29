@@ -10,10 +10,10 @@
             <a class="nav-link {{ Route::currentRouteName() == 'pages.home' ? 'active' : '' }}" aria-current="page" href="{{ route('pages.home') }}">Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() == 'pages.dept' ? 'active' : '' }}" href="{{ route('pages.dept') }}">Departments</a>
+            <a class="nav-link {{ Route::currentRouteName() == 'dept.index' ? 'active' : '' }}" href="{{ route('dept.index') }}">Departments</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() == 'pages.doctors' ? 'active' : '' }}" href="{{ route('pages.doctors') }}">Doctors</a>
+            <a class="nav-link {{ Route::currentRouteName() == 'doctors.index' ? 'active' : '' }}" href="{{ route('doctors.index') }}">Doctors</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteName() == 'pages.contact' ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>

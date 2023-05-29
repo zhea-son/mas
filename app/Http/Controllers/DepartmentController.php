@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class DepartmentController extends Controller
@@ -13,7 +14,9 @@ class DepartmentController extends Controller
      */
     public function index()
     {
-        //
+        $depts = Department::all();
+        // return $depts;
+        return view('admin.depts.index', compact('depts'));
     }
 
     /**
@@ -23,7 +26,7 @@ class DepartmentController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.depts.create');
     }
 
     /**
@@ -34,7 +37,17 @@ class DepartmentController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'dept' => 'required',
+            'rooms' => 'required',
+        ]);
+
+        $dept = new Department;
+        $dept->department = $request['dept'];
+        $dept->room_no = $request['rooms'];
+        $dept->save();
+        return redirect()->route('dept.index');
+
     }
 
     /**
@@ -56,7 +69,8 @@ class DepartmentController extends Controller
      */
     public function edit($id)
     {
-        //
+        $dept = Department::findOrFail($id);
+        return view('admin.depts.edit', compact('dept'));
     }
 
     /**
@@ -68,7 +82,15 @@ class DepartmentController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $dept = Department::findOrFail($id);
+        $request->validate([
+            'dept' => 'required',
+            'rooms' => 'required',
+        ]);
+        $dept->department = $request['dept'];
+        $dept->room_no = $request['rooms'];
+        $dept->update();
+        return redirect()->route('dept.index');
     }
 
     /**
@@ -79,6 +101,8 @@ class DepartmentController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dept = Department::findOrFail($id);
+        $dept->delete();
+        return back();
     }
 }

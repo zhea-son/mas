@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -13,7 +14,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $docs = Doctor::all();
+        return view('admin.doctors.index', compact('docs'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.doctors.create');
     }
 
     /**
@@ -56,7 +58,7 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('admin.doctors.edit');
     }
 
     /**
