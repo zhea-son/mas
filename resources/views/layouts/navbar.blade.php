@@ -13,7 +13,7 @@
             <a class="nav-link {{ Route::currentRouteName() == 'dept.index' ? 'active' : '' }}" href="{{ route('dept.index') }}">Departments</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() == 'doctors.index' ? 'active' : '' }}" href="{{ route('doctors.index') }}">Doctors</a>
+            <a class="nav-link {{ Route::currentRouteName() == 'doc.index' ? 'active' : '' }}" href="{{ route('doc.index') }}">Doctors</a>
           </li>
           <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteName() == 'pages.contact' ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>

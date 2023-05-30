@@ -29,13 +29,13 @@ Route::get('/login', function () {
 
 
 Route::resource('doctors', DoctorController::class)->names([
-    'index' => 'doctors.index',
-    'create' => 'doctors.create',
-    'store' => 'doctors.store',
-    'show' => 'doctors.show',
-    'edit' => 'doctors.edit',
-    'update' => 'doctors.update',
-    'destroy' => 'doctors.destroy',
+    'index' => 'doc.index',
+    'create' => 'doc.create',
+    'store' => 'doc.store',
+    'show' => 'doc.show',
+    'edit' => 'doc.edit',
+    'update' => 'doc.update',
+    'destroy' => 'doc.destroy',
 ]);;
 Route::resource('departments', DepartmentController::class)->names([
     'index' => 'dept.index',
