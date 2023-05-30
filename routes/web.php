@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\DepartmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,15 +18,31 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('pages.home');
 })->name('pages.home');
-Route::get('/departments', function () {
-    return view('pages.departments');
-})->name('pages.dept');
-Route::get('/doctors', function () {
-    return view('pages.doctors');
-})->name('pages.doctors');
+// Route::get('/departments', [DepartmentController::class, 'index'])->name('pages.dept');
+// Route::get('/doctors', [DoctorController::class, 'index'])->name('pages.doctors');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
 Route::get('/login', function () {
     return view('pages.login');
 })->name('pages.login');
+
+
+Route::resource('doctors', DoctorController::class)->names([
+    'index' => 'doc.index',
+    'create' => 'doc.create',
+    'store' => 'doc.store',
+    'show' => 'doc.show',
+    'edit' => 'doc.edit',
+    'update' => 'doc.update',
+    'destroy' => 'doc.destroy',
+]);;
+Route::resource('departments', DepartmentController::class)->names([
+    'index' => 'dept.index',
+    'create' => 'dept.create',
+    'store' => 'dept.store',
+    'show' => 'dept.show',
+    'edit' => 'dept.edit',
+    'update' => 'dept.update',
+    'destroy' => 'dept.destroy',
+]);;

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -13,7 +14,8 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        //
+        $docs = Doctor::all();
+        return view('admin.doctors.index', compact('docs'));
     }
 
     /**
@@ -23,7 +25,7 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.doctors.create');
     }
 
     /**
@@ -34,7 +36,18 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $formFields = $request->validate([
+            'name' => 'required',
+            'specialization' => 'required',
+            'degree' => 'required',
+            'license' => 'required',
+            'address' => 'required',
+            'contact' => 'required|min:10',
+        ]);
+        // return $formFields;
+        $dept = new Doctor;
+        $dept->create($formFields);
+        return redirect()->route('doc.index');
     }
 
     /**
@@ -56,7 +69,8 @@ class DoctorController extends Controller
      */
     public function edit($id)
     {
-        //
+        $doc = Doctor::findOrFail($id);
+        return view('admin.doctors.edit', compact('doc'));
     }
 
     /**
@@ -68,7 +82,25 @@ class DoctorController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // return $request;
+        $formFields = $request->validate([
+            'name' => 'required',
+            'specialization' => 'required',
+            'degree' => 'required',
+            'license' => 'required',
+            'address' => 'required',
+            'contact' => 'required|min:10',
+        ]);
+        $doc = Doctor::findOrFail($id);
+        $doc['name'] = $formFields['name'];
+        $doc['contact'] = $formFields['contact'];
+        $doc['address'] = $formFields['address'];
+        $doc['license'] = $formFields['license'];
+        $doc['specialization'] = $formFields['specialization'];
+        $doc['degree'] = $formFields['degree'];
+        $doc->save();
+        // return $doc;
+        return redirect()->route('doc.index');
     }
 
     /**
@@ -79,6 +111,8 @@ class DoctorController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $dept = Doctor::findOrFail($id);
+        $dept->delete();
+        return back();
     }
 }

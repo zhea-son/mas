@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('license');
             $table->string('address');
             $table->string('degree');
-            $table->boolean('is_specialist')->default(0);
+            $table->string('specialization');
             $table->timestamps();
         });
     }
