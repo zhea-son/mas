@@ -19,7 +19,7 @@
             <a class="nav-link {{ Route::currentRouteName() == 'pages.contact' ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>
           </li>
         </ul>
-        @if(!auth())
+        {{-- @if(!auth())
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Dropdown
@@ -31,11 +31,11 @@
               <li><a class="dropdown-item" href="#">Log Out</a></li>
             </ul>
         </div>
-        @else
+        @else --}}
         <div class="nav-item">
             <a class="btn btn-outline-primary" href="{{ route('pages.login') }}">Log In</a>
         </div>
-        @endif
+        {{-- @endif --}}
       </div>
     </div>
   </nav>
