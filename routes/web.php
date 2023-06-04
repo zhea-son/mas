@@ -32,31 +32,31 @@ Route::get('/login', function () {
 Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
 
 
-Route::prefix('/admin')->middleware('auth')->group(function(){
+Route::prefix('admin')->middleware('auth')->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
 
     Route::resource('doctors', DoctorController::class)->names([
-        'index' => 'doc.index',
-        'create' => 'doc.create',
-        'store' => 'doc.store',
-        'show' => 'doc.show',
-        'edit' => 'doc.edit',
-        'update' => 'doc.update',
-        'destroy' => 'doc.destroy',
+        'index' => 'doctor.index',
+        'create' => 'doctor.create',
+        'store' => 'doctor.store',
+        'show' => 'doctor.show',
+        'edit' => 'doctor.edit',
+        'update' => 'doctor.update',
+        'destroy' => 'doctor.destroy',
     ]);
 
     Route::resource('departments', DepartmentController::class)->names([
-        'index' => 'dept.index',
-        'create' => 'dept.create',
-        'store' => 'dept.store',
-        'show' => 'dept.show',
-        'edit' => 'dept.edit',
-        'update' => 'dept.update',
-        'destroy' => 'dept.destroy',
+        'index' => 'department.index',
+        'create' => 'department.create',
+        'store' => 'department.store',
+        'show' => 'department.show',
+        'edit' => 'department.edit',
+        'update' => 'department.update',
+        'destroy' => 'department.destroy',
     ]);
 
     Route::prefix('/schedules')->group(function() {
-        Route::get('/', [ScheduleController::class, 'index'])->name('schedules.index');
+        Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
 
     });
 

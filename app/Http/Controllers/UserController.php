@@ -16,7 +16,7 @@ class UserController extends Controller
         if (Auth::attempt($formFields)) {
             // Authentication successful
             // return "lol";
-            return redirect()->view('admin.dashboard');
+            return redirect()->route('admin.dashboard');
         } else {
             // Authentication failed
             // return "not lol";
