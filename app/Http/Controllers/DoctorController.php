@@ -47,7 +47,7 @@ class DoctorController extends Controller
         // return $formFields;
         $dept = new Doctor;
         $dept->create($formFields);
-        return redirect()->route('doc.index');
+        return redirect()->route('admin.doctor.index');
     }
 
     /**
@@ -100,7 +100,7 @@ class DoctorController extends Controller
         $doc['degree'] = $formFields['degree'];
         $doc->save();
         // return $doc;
-        return redirect()->route('doc.index');
+        return redirect()->route('admin.doctor.index');
     }
 
     /**

@@ -1,10 +1,11 @@
-@extends('layouts.main')
+@extends('admin.layouts.master')
+@section('title', "Create Doctor")
 
 @section('content')
 
 <div class="container">
     <h2>Add Doctor</h2><br/>
-<form action="{{ route('doc.store') }}" method="POST"> 
+<form action="{{ route('admin.doctor.store') }}" method="POST"> 
     @csrf
     <div class="form-group">
       <label for="">Doctor Name</label>

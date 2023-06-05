@@ -1,10 +1,10 @@
-@extends('layouts.main')
-
+@extends('admin.layouts.master')
+@section('title', "Edit Department")
 @section('content')
 
 <div class="container">
     <h2>Edit Department</h2><br/>
-<form action="{{ route('dept.update', $dept->id) }}" method="POST">
+<form action="{{ route('admin.department.update', $dept->id) }}" method="POST">
     @csrf 
     @method('PUT')
     <div class="form-group">
