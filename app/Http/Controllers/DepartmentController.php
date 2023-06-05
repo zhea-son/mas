@@ -46,7 +46,7 @@ class DepartmentController extends Controller
         $dept->department = $request['dept'];
         $dept->room_no = $request['rooms'];
         $dept->save();
-        return redirect()->route('dept.index');
+        return redirect()->route('admin.department.index');
 
     }
 
@@ -90,7 +90,7 @@ class DepartmentController extends Controller
         $dept->department = $request['dept'];
         $dept->room_no = $request['rooms'];
         $dept->update();
-        return redirect()->route('dept.index');
+        return redirect()->route('admin.department.index');
     }
 
     /**

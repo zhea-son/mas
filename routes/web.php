@@ -21,8 +21,8 @@ use App\Http\Controllers\DepartmentController;
 Route::get('/', function () {
     return view('pages.home');
 })->name('pages.home');
-// Route::get('/departments', [DepartmentController::class, 'index'])->name('pages.dept');
-// Route::get('/doctors', [DoctorController::class, 'index'])->name('pages.doctors');
+Route::get('/departments', [DepartmentController::class, 'index'])->name('pages.dept');
+Route::get('/doctors', [DoctorController::class, 'index'])->name('pages.doc');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
@@ -32,8 +32,8 @@ Route::get('/login', function () {
 Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
 
 
-Route::prefix('admin')->middleware('auth')->group(function(){
-    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+    Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
 
     Route::resource('doctors', DoctorController::class)->names([
         'index' => 'doctor.index',
@@ -55,7 +55,7 @@ Route::prefix('admin')->middleware('auth')->group(function(){
         'destroy' => 'department.destroy',
     ]);
 
-    Route::prefix('/schedules')->group(function() {
+    Route::prefix('schedules')->group(function() {
         Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
 
     });

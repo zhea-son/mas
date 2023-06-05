@@ -2,17 +2,15 @@
     .header-logo{
         height:100%;
         width:25%;
-        background-color: green;
         float:left;
     }
     .header-logo h1{
         margin: 25px 0px 0px 75px;
-        font-size: 100px;
+        font-size: 50px;
     }
     .header-title{
         height:100%;
         width:50%;
-        background-color: red;
         float:left;
     }
     .header-title p{
@@ -23,17 +21,16 @@
     .header-user p{
         margin-top:50px;
         font-size:25px;
-        margin-left:2px;
-        float:left;
+        margin-right:10px;
+        float:right;
     }
     .header-user{
         height:100%;
         width:25%;
         float:left;
-        background-color: blue;
     }
     .circle{
-        float:left;
+        float:right;
         background-color: whitesmoke;
         height:50px;
         width:50px;
@@ -46,7 +43,7 @@
 
 
 <div class="col-md-12">
-    <div class="header-nav" style="background-color: red; height: 140px;">
+    <div class="header-nav" style="background-color: rgb(191, 124, 0); height: 100px;">
         <div class="header-logo"><h1>MAS</h1></div>
         @php
             $route = explode('.',Route::currentRouteName());
@@ -54,8 +51,8 @@
         @endphp
         <div class="header-title"><p>Admin >> {{ $route_name }}</p></div>
         <div class="header-user">
-            <div class="circle"><span class="fa fa-user" style="margin-left:16px;margin-top:15px;"></span></div>
             <p>Admin</p>
+            <div class="circle"><span class="fa fa-user" style="margin-left:16px;margin-top:15px;"></span></div>
         </div>
     </div>
 </div>

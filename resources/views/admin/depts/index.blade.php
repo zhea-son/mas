@@ -1,10 +1,10 @@
-@extends('layouts.main')
-
+@extends('admin.layouts.master')
+@section('title', "My Departments")
 @section('content')
 
 <div class="container">
     <br/>
-    <a type="button" class="btn btn-primary" href="{{ route('dept.create') }}">+ Add Department</a>
+    <a type="button" class="btn btn-primary" href="{{ route('admin.department.create') }}">+ Add Department</a>
     <br/>
     <table class="table table-striped">
         <thead>
@@ -27,8 +27,8 @@
             <td>{{ $dept->department }}</td>
             <td>{{ $dept->room_no }}</td>
             <td style="display:flex;">
-                <a type="button" class="btn btn-info" href="{{ route('dept.edit', $dept->id) }}">Edit</a>
-                <form action="{{route('dept.destroy', $dept->id)}}" method="POST">
+                <a type="button" class="btn btn-info" href="{{ route('admin.department.edit', $dept->id) }}">Edit</a>
+                <form action="{{route('admin.department.destroy', $dept->id)}}" method="POST">
                     @csrf
                     @method('DELETE')
                     <button style="margin-left:5px;" type="submit" class="btn btn-danger">Delete</button>
