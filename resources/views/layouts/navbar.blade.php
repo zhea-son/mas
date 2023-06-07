@@ -19,23 +19,30 @@
             <a class="nav-link {{ Route::currentRouteName() == 'pages.contact' ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>
           </li>
         </ul>
-        {{-- @if(!auth())
+        @auth
+            
         <div class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
+              {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" href="#">My Appointments</a></li>
               <li><a class="dropdown-item" href="#">My Bookings</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" href="#">Log Out</a></li>
+              <li>
+                <form method="POST" action="{{ route('logout') }}">
+                  @csrf
+                  <button class="dropdown-item" type="submit">Log Out</button>
+              </form>
+            </li>
             </ul>
         </div>
-        @else --}}
+        @else
         <div class="nav-item">
-            <a class="btn btn-outline-primary" href="{{ route('pages.login') }}">Log In</a>
+            <a class="btn btn-outline-primary" href="/login">Log In</a>
         </div>
-        {{-- @endif --}}
+        @endauth
+
       </div>
     </div>
   </nav>
