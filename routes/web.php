@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -26,14 +27,15 @@ Route::get('/doctors', [DoctorController::class, 'index'])->name('pages.doc');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
-Route::get('/login', function () {
-    return view('pages.login');
-})->name('pages.login');
-Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
+
+// Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
 
 
-Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->group(function(){
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/', function () {
+        return redirect()->route('admin.dashboard');
+    });
 
     Route::resource('doctors', DoctorController::class)->names([
         'index' => 'doctor.index',
@@ -57,7 +59,12 @@ Route::prefix('admin')->name('admin.')->middleware('auth')->group(function(){
 
     Route::prefix('schedules')->group(function() {
         Route::get('/', [ScheduleController::class, 'index'])->name('schedule.index');
-
     });
 
+    
 });
+
+// Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

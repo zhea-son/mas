@@ -4,6 +4,9 @@
         background-color:orange;
         border-bottom:2px solid black;
     }
+    .first:hover{
+        background-color: rgb(251, 198, 100);
+    }
     .first span{
         margin: 12px 0px 0px 35px;
         float:left;
@@ -51,7 +54,12 @@
         <div @if(request()->routeIs('admin.schedule.*')) class="active" @else class="first" @endif><a href="{{ route('admin.schedule.index') }}"><span class="fas fa-calendar"></span><h5>Schedules</h5></a></div>
         <div @if(Route::currentRouteName() == 'checkup.*') class="active" @else class="first" @endif><a href=""><span class="fas fa-heartbeat"></span><h5>Checkups</h5></a></div>
         <div @if(Route::currentRouteName() == 'shop.*') class="active" @else class="first" @endif><a href=""><span class="fas fa-briefcase-medical"></span><h5>Shop</h5></a></div> 
-        <div class="first"><span class="fas fa-sign-out-alt"></span><h5>Log Out</h5></div> 
+        <div class="first">
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="first" style="border:transparent;background-color:orange;"><span class="fas fa-sign-out-alt"></span><h5>Log Out</h5></button>
+            </form>
+        </div> 
         <div class="second"></div>
     </div>
 

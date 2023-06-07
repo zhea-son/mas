@@ -19,8 +19,18 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Admin',
             'email' => 'admin@mas.com',
+            'contact' => '056-533539',
+            'address' => 'Bharatpur, Nepal',
             'password' => Hash::make('password'),
-            'status'=> 1,
+            'role'=> 1,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Ranjan Khanal',
+            'email' => 'ranjan@mas.com',
+            'contact' => '9809229946',
+            'address' => 'Bharatpur, Nepal',
+            'password' => Hash::make('password'),
+            'role'=> 0,
         ]);
     }
 }
