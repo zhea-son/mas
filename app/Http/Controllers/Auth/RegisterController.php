@@ -97,9 +97,9 @@ class RegisterController extends Controller
         $user->password = Hash::make($formFields['password']);
         $user->contact = $formFields['contact'];
         $user->address = $formFields['city'].', '.$formFields['district'];
+        return $user;
         $user->save();
         Auth::login($user);
-        // return $user;
         return redirect()->route('pages.home');
 
     }
