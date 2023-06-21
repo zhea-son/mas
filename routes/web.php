@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
@@ -22,8 +23,9 @@ use App\Http\Controllers\DepartmentController;
 Route::get('/', function () {
     return view('pages.home');
 })->name('pages.home');
-Route::get('/departments', [DepartmentController::class, 'index'])->name('pages.dept');
-Route::get('/doctors', [DoctorController::class, 'index'])->name('pages.doc');
+Route::get('/departments', [HomeController::class, 'depts'])->name('pages.dept');
+Route::get('/schedules', [HomeController::class, 'schedules'])->name('pages.schedules');
+Route::get('/doctors', [HomeController::class, 'doctors'])->name('pages.doc');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');

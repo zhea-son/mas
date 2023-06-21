@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 
 class DoctorController extends Controller
 {
@@ -14,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $docs = Doctor::all();
+        $docs = Doctor::paginate(8);
         return view('admin.doctors.index', compact('docs'));
     }
 
@@ -25,7 +26,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('admin.doctors.create');
+        $specs = Specialization::all();
+        return view('admin.doctors.create', compact('specs'));
     }
 
     /**
@@ -70,7 +72,8 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doc = Doctor::findOrFail($id);
-        return view('admin.doctors.edit', compact('doc'));
+        $specs = Specialization::all();
+        return view('admin.doctors.edit', compact('doc','specs'));
     }
 
     /**

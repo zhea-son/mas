@@ -13,15 +13,10 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('doctors', function (Blueprint $table) {
+        Schema::create('specializations', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('contact');
-            $table->string('license');
-            $table->string('email');
-            $table->string('address');
-            $table->string('degree');
-            $table->unsignedBigInteger('specialization_id')->constrained('specializations')->cascadeOnDelete();
+            $table->string('specialization');
+            $table->string('organ');
             $table->timestamps();
         });
     }
@@ -33,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('doctors');
+        Schema::dropIfExists('specializations');
     }
 };

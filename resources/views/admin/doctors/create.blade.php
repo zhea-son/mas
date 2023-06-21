@@ -25,7 +25,12 @@
     </div>
     <div class="form-group">
       <label for="">Specialization</label>
-      <input type="text" class="form-control" id="specialization" name="specialization" aria-describedby="emailHelp" placeholder="Specialization At">
+      <select name="specialization" class="form-control">
+        <option value="">--Select</option>
+        @foreach ($specs as $item)
+        <option value="{{ $item->id }}">{{ $item->specialization }}</option>
+        @endforeach
+      </select>
     </div>
     <div class="form-group">
       <label for="">License</label>
