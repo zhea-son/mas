@@ -14,7 +14,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::paginate(8);
+        $schedules = Schedule::latest()->paginate(8);
         return view('admin.schedules.index', compact('schedules'));
     }
 

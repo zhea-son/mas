@@ -15,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $docs = Doctor::paginate(8);
+        $docs = Doctor::latest()->paginate(8);
         return view('admin.doctors.index', compact('docs'));
     }
 
@@ -38,13 +38,15 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $formFields = $request->validate([
             'name' => 'required',
-            'specialization' => 'required',
+            'specialization_id' => 'required',
             'degree' => 'required',
             'license' => 'required',
             'address' => 'required',
             'contact' => 'required|min:10',
+            'email' => 'required|email',
         ]);
         // return $formFields;
         $dept = new Doctor;
@@ -88,19 +90,21 @@ class DoctorController extends Controller
         // return $request;
         $formFields = $request->validate([
             'name' => 'required',
-            'specialization' => 'required',
+            'specialization_id' => 'required',
             'degree' => 'required',
             'license' => 'required',
             'address' => 'required',
             'contact' => 'required|min:10',
+            'email' => 'required|email',
         ]);
         $doc = Doctor::findOrFail($id);
         $doc['name'] = $formFields['name'];
         $doc['contact'] = $formFields['contact'];
         $doc['address'] = $formFields['address'];
         $doc['license'] = $formFields['license'];
-        $doc['specialization'] = $formFields['specialization'];
+        $doc['specialization_id'] = $formFields['specialization_id'];
         $doc['degree'] = $formFields['degree'];
+        $doc['email'] = $formFields['email'];
         $doc->save();
         // return $doc;
         return redirect()->route('admin.doctor.index');
