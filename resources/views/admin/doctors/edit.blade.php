@@ -17,6 +17,10 @@
       <input type="text" class="form-control" id="contact" name="contact" aria-describedby="emailHelp" placeholder="Enter Contact" value="{{ $doc->contact }}">
     </div>
     <div class="form-group">
+      <label for="">Email</label>
+      <input type="text" class="form-control" id="email" name="email" aria-describedby="emailHelp" placeholder="Enter Email" value="{{ $doc->email }}">
+    </div>
+    <div class="form-group">
       <label for="">Address</label>
       <input type="text" class="form-control" id="address" name="address" aria-describedby="emailHelp" placeholder="Enter Address" value="{{ $doc->address }}">
     </div>
@@ -26,7 +30,12 @@
     </div>
     <div class="form-group">
       <label for="">Specialization</label>
-      <input type="text" class="form-control" id="specialization" name="specialization" aria-describedby="emailHelp" placeholder="Specialization At" value="{{ $doc->specialization }}">
+      <select name="specialization_id" class="form-control">
+        <option value="">--Select</option>
+        @foreach ($specs as $item)
+        <option value="{{ $item->id }}" {{ $doc->specialization_id == $item->id ? 'selected' : '' }}>{{ $item->specialization }}</option>
+        @endforeach
+      </select>
     </div>
     <div class="form-group">
       <label for="">License</label>

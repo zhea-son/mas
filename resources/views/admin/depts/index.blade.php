@@ -39,6 +39,8 @@
         </tbody>
     </table>
 
+    {{-- {{ $depts->links() }} --}}
+
 </div>
 
 @endsection

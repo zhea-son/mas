@@ -15,7 +15,7 @@
             <th scope="col">Contact</th>
             <th scope="col">Address</th>
             <th scope="col">Degree</th>
-            <th scope="col">Specialization At</th>
+            <th scope="col">Specialization</th>
             <th scope="col">Actions</th>
           </tr>
         </thead>
@@ -32,7 +32,7 @@
             <td>{{ $doc->contact }}</td>
             <td>{{ $doc->address }}</td>
             <td>{{ $doc->degree }}</td>
-            <td>{{ $doc->specialization }}</td>
+            <td>{{ $doc->specialization->specialization }}</td>
             <td style="display:flex;">
                 <a type="button" class="btn btn-info" href="{{ route('admin.doctor.edit', $doc->id) }}">Edit</a>
                 <form action="{{route('admin.doctor.destroy', $doc->id)}}" method="POST">
@@ -45,6 +45,8 @@
           @endforeach
         </tbody>
     </table>
+
+    {{-- {{ $docs->links() }} --}}
 
 </div>
 

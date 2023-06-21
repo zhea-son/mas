@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Doctor;
 use Illuminate\Http\Request;
+use App\Models\Specialization;
 
 class DoctorController extends Controller
 {
@@ -14,7 +15,7 @@ class DoctorController extends Controller
      */
     public function index()
     {
-        $docs = Doctor::all();
+        $docs = Doctor::latest()->paginate(8);
         return view('admin.doctors.index', compact('docs'));
     }
 
@@ -25,7 +26,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
-        return view('admin.doctors.create');
+        $specs = Specialization::all();
+        return view('admin.doctors.create', compact('specs'));
     }
 
     /**
@@ -36,13 +38,15 @@ class DoctorController extends Controller
      */
     public function store(Request $request)
     {
+        // return $request;
         $formFields = $request->validate([
             'name' => 'required',
-            'specialization' => 'required',
+            'specialization_id' => 'required',
             'degree' => 'required',
             'license' => 'required',
             'address' => 'required',
             'contact' => 'required|min:10',
+            'email' => 'required|email',
         ]);
         // return $formFields;
         $dept = new Doctor;
@@ -70,7 +74,8 @@ class DoctorController extends Controller
     public function edit($id)
     {
         $doc = Doctor::findOrFail($id);
-        return view('admin.doctors.edit', compact('doc'));
+        $specs = Specialization::all();
+        return view('admin.doctors.edit', compact('doc','specs'));
     }
 
     /**
@@ -85,19 +90,21 @@ class DoctorController extends Controller
         // return $request;
         $formFields = $request->validate([
             'name' => 'required',
-            'specialization' => 'required',
+            'specialization_id' => 'required',
             'degree' => 'required',
             'license' => 'required',
             'address' => 'required',
             'contact' => 'required|min:10',
+            'email' => 'required|email',
         ]);
         $doc = Doctor::findOrFail($id);
         $doc['name'] = $formFields['name'];
         $doc['contact'] = $formFields['contact'];
         $doc['address'] = $formFields['address'];
         $doc['license'] = $formFields['license'];
-        $doc['specialization'] = $formFields['specialization'];
+        $doc['specialization_id'] = $formFields['specialization_id'];
         $doc['degree'] = $formFields['degree'];
+        $doc['email'] = $formFields['email'];
         $doc->save();
         // return $doc;
         return redirect()->route('admin.doctor.index');
