@@ -10,5 +10,7 @@ class Department extends Model
 {
     use HasFactory;
 
-    
+    public function schedules(){
+        return $this->hasMany(Schedule::class);
+    }
 }

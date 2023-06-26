@@ -11,7 +11,7 @@ class Schedule extends Model
     use HasFactory;
 
     public function department(){
-        return $this->belongsTo(Department::class);
+        return $this->belongsTo(Department::class,'dept_id');
     }
 
     public function doctor(){

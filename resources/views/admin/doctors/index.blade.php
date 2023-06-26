@@ -7,44 +7,35 @@
     <br/>
     <a type="button" class="btn btn-primary" href="{{ route('admin.doctor.create') }}">+ Add Doctor</a>
     <br/>
-    <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Doctor Name</th>
-            <th scope="col">Contact</th>
-            <th scope="col">Address</th>
-            <th scope="col">Degree</th>
-            <th scope="col">Specialization</th>
-            <th scope="col">Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-            <tr>
-            @if(count($docs) == 0)
-                <td colspan="7">No Doctors Added.</td>
-            @endif
-            </tr>
-            @foreach($docs as $doc)
-          <tr>
-            <th scope="row">{{ $loop->index + 1 }}</th>
-            <td>{{ $doc->name }}</td>
-            <td>{{ $doc->contact }}</td>
-            <td>{{ $doc->address }}</td>
-            <td>{{ $doc->degree }}</td>
-            <td>{{ $doc->specialization->specialization }}</td>
-            <td style="display:flex;">
-                <a type="button" class="btn btn-info" href="{{ route('admin.doctor.edit', $doc->id) }}">Edit</a>
-                <form action="{{route('admin.doctor.destroy', $doc->id)}}" method="POST">
-                    @csrf
-                    @method('DELETE')
-                    <button style="margin-left:5px;" type="submit" class="btn btn-danger">Delete</button>
-                </form>
-            </td>
-          </tr>
-          @endforeach
-        </tbody>
-    </table>
+
+    <div class="row" style="margin-top:5px;">
+      @foreach ($docs as $item)
+        
+      <div class="col-md-3">
+                  <div class="card" style="width: 18rem;">
+          <img class="card-img-top" src="/assets/images/doctor1.jpg" alt="Card image cap">
+          <div class="card-body">
+              <h5 class="card-title">{{ $item->name }}</h5>
+              <p class="card-text">Really Good Doctor!!</p>
+          </div>
+          <ul class="list-group list-group-flush">
+              <li class="list-group-item">{{ $item->specialization->specialization }}</li>
+              <li class="list-group-item">{{ $item->degree }}</li>
+          </ul>
+          <div class="card-body" style="display:flex;">
+              <a href="{{ route('admin.doctor.edit', $item->id) }}" class="card-link">Edit</a>
+              <a href="#" class="card-link" style="color:teal;">Add Schedule</a>
+              <form action="{{route('admin.doctor.destroy', $item->id)}}" method="POST">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="card-link" style="color:red;margin-left:15px;">Delete</button>
+              </form>
+          </div>
+          </div>
+      </div>
+      @endforeach
+      
+  </div>
 
     {{-- {{ $docs->links() }} --}}
 

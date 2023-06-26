@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Doctor;
 use App\Models\Schedule;
+use App\Models\Department;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -25,7 +27,9 @@ class ScheduleController extends Controller
      */
     public function create()
     {
-        //
+        $doctors = Doctor::all();
+        $departments = Department::all();
+        return view('admin.schedules.create', compact('doctors','departments'));
     }
 
     /**
@@ -36,7 +40,23 @@ class ScheduleController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $request->validate([
+            'doctor' => 'required',
+            'department' => 'required',
+            'date' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+        ]);
+        $schedule = new Schedule();
+        $schedule->doctor_id = $request['doctor'];
+        $schedule->dept_id = $request['department'];
+        $schedule->from = $request['from'];
+        $schedule->to = $request['to'];
+        $schedule->date = $request['date'];
+        // return $schedule->department;
+        $schedule->save();
+        return redirect()->route('admin.schedule.index');
     }
 
     /**
@@ -58,7 +78,10 @@ class ScheduleController extends Controller
      */
     public function edit(Schedule $schedule)
     {
-        //
+        // return $schedule;
+        $doctors = Doctor::all();
+        $departments = Department::all();
+        return view('admin.schedules.edit', compact('doctors','departments','schedule'));
     }
 
     /**
@@ -70,7 +93,22 @@ class ScheduleController extends Controller
      */
     public function update(Request $request, Schedule $schedule)
     {
-        //
+        $request->validate([
+            'doctor' => 'required',
+            'department' => 'required',
+            'date' => 'required',
+            'from' => 'required',
+            'to' => 'required',
+        ]);
+        
+        $schedule->doctor_id = $request['doctor'];
+        $schedule->dept_id = $request['department'];
+        $schedule->from = $request['from'];
+        $schedule->to = $request['to'];
+        $schedule->date = $request['date'];
+        // return $schedule->department;
+        $schedule->save();
+        return redirect()->route('admin.schedule.index');
     }
 
     /**
@@ -81,6 +119,7 @@ class ScheduleController extends Controller
      */
     public function destroy(Schedule $schedule)
     {
-        //
+        $schedule->delete();
+        return back();
     }
 }
