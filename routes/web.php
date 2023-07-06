@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\RoutineController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DepartmentController;
 
@@ -66,6 +67,15 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::get('/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedule.edit');
         Route::put('/update/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
         Route::delete('/delete/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
+    });
+
+    Route::prefix('routine')->group(function() {
+        Route::get('/', [RoutineController::class, 'index'])->name('routine.index');
+        Route::get('/create', [RoutineController::class, 'create'])->name('routine.create');
+        Route::post('/store', [RoutineController::class, 'store'])->name('routine.store');
+        Route::get('/edit/{routine}', [RoutineController::class, 'edit'])->name('routine.edit');
+        Route::put('/update/{routine}', [RoutineController::class, 'update'])->name('routine.update');
+        Route::delete('/delete/{routine}', [RoutineController::class, 'destroy'])->name('routine.destroy');
     });
 
     

@@ -3,6 +3,7 @@
         height:100%;
         width:25%;
         float:left;
+        color:#fff;
     }
     .header-logo h1{
         margin: 25px 0px 0px 75px;
@@ -16,12 +17,14 @@
     .header-title p{
         font-size:30px;
         margin-top:50px;
+        color:#fff;
         margin-left: 25px;
     }
     .header-user p{
         margin-top:50px;
         font-size:25px;
         margin-right:10px;
+        color:#fff;
         float:right;
     }
     .header-user{
@@ -43,7 +46,7 @@
 
 
 <div class="col-md-12">
-    <div class="header-nav" style="background-color: rgb(191, 124, 0); height: 100px;">
+    <div class="header-nav" style="background-color: rgb(13, 0, 191); height: 100px;">
         <div class="header-logo"><h1>MAS</h1></div>
         @php
             $route = explode('.',Route::currentRouteName());
