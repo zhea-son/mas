@@ -21,15 +21,16 @@ use App\Http\Controllers\DepartmentController;
 |
 */
 
-Route::get('/', function () {
-    return view('pages.home');
-})->name('pages.home');
+Route::get('/', [HomeController::class, 'index'])->name('pages.home');
 Route::get('/departments', [HomeController::class, 'depts'])->name('pages.dept');
 Route::get('/schedules', [HomeController::class, 'schedules'])->name('pages.schedules');
+Route::get('/routines', [HomeController::class, 'routines'])->name('pages.routines');
 Route::get('/doctors', [HomeController::class, 'doctors'])->name('pages.doc');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
+
+Route::post('/search',[HomeController::class, 'search'])->name('search');
 
 // Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
 
