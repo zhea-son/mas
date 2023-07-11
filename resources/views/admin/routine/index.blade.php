@@ -4,18 +4,18 @@
 
 <div class="container">
     <br/>
-    <a type="button" class="btn btn-primary" href="{{ route('admin.schedule.create') }}">+ Add Schedule</a>
+    <a type="button" class="btn btn-primary" href="{{ route('admin.routine.create') }}">+ Add Routine</a>
     <br/>
 
 <table class="table table-striped">
     <thead>
       <tr>
         <th scope="col">#</th>
-        <th scope="col">Date</th>
         <th scope="col">Doctor Name</th>
         <th scope="col">Department</th>
         <th scope="col">Start Time</th>
         <th scope="col">End Time</th>
+        <th scope="col">Days</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -28,14 +28,20 @@
         @foreach($schedules as $schedule)
       <tr>
         <th scope="row">{{ $loop->index + 1 }}</th>
-        <td>{{ $schedule->date }}</td>
         <td>{{ $schedule->doctor->name }}</td>
         <td>{{ $schedule->department->department }}</td>
         <td>{{ $schedule->from }}</td>
         <td>{{ $schedule->to }}</td>
+        @php $day_ids = explode(',',$schedule->recurring); @endphp
+        <td>Every 
+          @foreach ($days as $item)
+            @if(in_array($item->id,$day_ids))
+            {{ $item->day }},
+            @endif    
+          @endforeach</td>
         <td style="display:flex;">
-            <a type="button" class="btn btn-info" href="{{ route('admin.schedule.edit', $schedule->id) }}">Edit</a>
-            <form action="{{route('admin.schedule.destroy', $schedule->id)}}" method="POST">
+            <a type="button" class="btn btn-info" href="{{ route('admin.routine.edit', $schedule->id) }}">Edit</a>
+            <form action="{{route('admin.routine.destroy', $schedule->id)}}" method="POST">
                 @csrf
                 @method('DELETE')
                 <button style="margin-left:5px;" type="submit" class="btn btn-danger">Delete</button>

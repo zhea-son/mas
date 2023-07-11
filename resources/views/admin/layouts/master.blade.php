@@ -16,6 +16,7 @@
             margin-top:-645px;
         }
     </style>
+    @yield('custom-style')
 </head>
 <body>
     @include('admin.layouts.header')
@@ -24,6 +25,8 @@
     <div class="kode-content">
         @yield('content')
     </div>
+
+    @yield('custom-script')
 
 </body>
 </html>

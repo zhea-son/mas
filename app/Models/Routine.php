@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Routine extends Model
 {
     use HasFactory;
+
+    public function department(){
+        return $this->belongsTo(Department::class,'dept_id');
+    }
+
+    public function doctor(){
+        return $this->belongsTo(Doctor::class);
+    }
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="container">
-    <form method="post" action="{{route('admin.schedule.store')}}">
+    <form method="post" action="{{route('admin.routine.store')}}">
         @csrf
         <div class="row" style="margin-top:10px;">
         <div class="col-md-3"><label class="form-control">Doctor:</label></div>
@@ -27,12 +27,7 @@
             </select>
         </div>
         </div>
-        <div class="row" style="margin-top:10px;">
-            <div class="col-md-3"><label class="form-control">Date:</label></div>
-            <div class="col-md-6">
-                <input type="date" class="form-control" name="date">
-            </div>
-        </div>
+        
         <div class="row" style="margin-top:10px;">
             <div class="col-md-3"><label class="form-control">From:</label></div>
             <div class="col-md-6">
@@ -45,11 +40,20 @@
                 <input type="time" class="form-control" name="to">
             </div>
         </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3"><label class="form-control">Days:</label></div>
+            <div class="col-md-6">
+                @foreach ($days as $day)
+                <input type="checkbox" name="{{ $day->day }}"> <label>{{ $day->day }}</label>
+                @endforeach
+                
+            </div>
+        </div>
 
         <div class="row" style="margin-top:10px;">
             <div class="col-md-3"></div>
             <div class="col-md-6">
-                <button type="submit" class="btn btn-primary">Add Schedule</button>
+                <button type="submit" class="btn btn-primary">Add Routine</button>
             </div>
         </div>
         

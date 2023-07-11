@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('address');
             $table->string('degree');
+            $table->tinyInteger('status')->default(0);
             $table->unsignedBigInteger('specialization_id')->constrained('specializations')->cascadeOnDelete();
             $table->timestamps();
         });

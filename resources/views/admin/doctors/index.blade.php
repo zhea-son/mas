@@ -15,7 +15,7 @@
                   <div class="card" style="width: 18rem;">
           <img class="card-img-top" src="/assets/images/doctor1.jpg" alt="Card image cap">
           <div class="card-body">
-              <h5 class="card-title">{{ $item->name }}</h5>
+              <h5 class="card-title">{{ $item->name }} </h5><span style="float:right;background-color:rgb(72, 255, 0);">{{ $item->status }}</span>
               <p class="card-text">Really Good Doctor!!</p>
           </div>
           <ul class="list-group list-group-flush">

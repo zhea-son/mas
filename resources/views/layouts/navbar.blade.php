@@ -26,8 +26,12 @@
               {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu">
+            @if(Auth::user()->role == 0)
               <li><a class="dropdown-item" href="#">My Appointments</a></li>
               <li><a class="dropdown-item" href="#">My Bookings</a></li>
+            @else
+              <li><a class="dropdown-item" href="/admin">Dashboard</a></li>
+            @endif
               <li><hr class="dropdown-divider"></li>
               <li>
                 <form method="POST" action="{{ route('logout') }}">
