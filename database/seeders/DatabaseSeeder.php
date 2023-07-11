@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Database\Seeders\DaySeeder;
 use Illuminate\Database\Seeder;
 use Database\Seeders\UserSeeder;
 
@@ -26,5 +27,6 @@ class DatabaseSeeder extends Seeder
             $this->call(DepartmentSeeder::class);
             $this->call(DoctorSeeder::class);
             $this->call(SpecializationSeeder::class);
+            $this->call(DaySeeder::class);
     }
 }

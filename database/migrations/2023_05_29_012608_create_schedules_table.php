@@ -20,6 +20,7 @@ return new class extends Migration
             $table->date('date');
             $table->time('from');
             $table->time('to');
+            $table->boolean('complete')->default(0);
             $table->timestamps();
         });
     }
