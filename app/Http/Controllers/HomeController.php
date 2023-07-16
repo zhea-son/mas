@@ -57,13 +57,15 @@ class HomeController extends Controller
     }
     public function search(Request $request){
         // return $request;
-        if($request->doctor != null && $request->department == null){
-            $schedules = Schedule::where('doctor_id',$request->doctor)->where('complete',false)->get();
+        if($request->search_tag == "doctor"){
+            $item = Doctor::where('name', $request->search_name)->first();
+            $schedules = Schedule::where('doctor_id',$item->id)->where('complete',false)->get();
         }
-        else if($request->doctor == null && $request->department != null){
-            $schedules = Schedule::where('dept_id',$request->department)->where('complete',false)->get();
+        else if($request->search_tag == "department"){
+            $item = Department::where('department', $request->search_name)->first();
+            $schedules = Schedule::where('dept_id',$item->id)->where('complete',false)->get();
         }
-        else if($request->doctor == null && $request->department == null){
+        else if($request->search_tag == null && $request->search_name == null){
             $schedules = Schedule::where('complete',false)->get();
         }
         else{
@@ -72,7 +74,7 @@ class HomeController extends Controller
 
         $doctors = Doctor::all();
         $departments = Department::all();
-        return $schedules;
+        // return $item;
         return view('pages.schedules', compact('doctors','departments','schedules')); 
         
     }
