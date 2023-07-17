@@ -55,6 +55,13 @@ class HomeController extends Controller
         $routines = Routine::all();
         return view('pages.routine',compact('routines','doctors','departments'));
     }
+    public function appointments()
+    {
+        $doctors = Doctor::all();
+        $departments = Department::all();
+        $routines = Routine::all();
+        return view('pages.appointments',compact('routines','doctors','departments'));
+    }
     public function search(Request $request){
         // return $request;
         if($request->search_tag == "doctor"){

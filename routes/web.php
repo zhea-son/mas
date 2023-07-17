@@ -25,13 +25,23 @@ Route::get('/', [HomeController::class, 'index'])->name('pages.home');
 Route::get('/departments', [HomeController::class, 'depts'])->name('pages.dept');
 Route::get('/schedules', [HomeController::class, 'schedules'])->name('pages.schedules');
 Route::get('/routines', [HomeController::class, 'routines'])->name('pages.routines');
+Route::get('/appointments', [HomeController::class, 'appointments'])->name('pages.appointments');
 Route::get('/doctors', [HomeController::class, 'doctors'])->name('pages.doc');
 Route::get('/contact', function () {
     return view('pages.contact');
 })->name('pages.contact');
+Route::get('/about', function () {
+    return view('pages.about');
+})->name('pages.about');
+Route::get('/shop', function () {
+    return view('pages.shop');
+})->name('pages.shop');
 
 Route::post('/search',[HomeController::class, 'search'])->name('search');
-
+Route::post('/search_date',[HomeController::class, 'search_date'])->name('search.date');
+Route::get('/home1', function(){
+    return view('home1');
+});
 // Route::post('/authenticate', [UserController::class, 'authenticate'])->name('login');
 
 

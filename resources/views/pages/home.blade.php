@@ -42,7 +42,7 @@
       </button>
     </div>
 
-    @include('partials._search')
+    @include('partials._date_search')
   
   
     <!-- Marketing messaging and featurettes

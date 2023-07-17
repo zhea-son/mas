@@ -5,8 +5,9 @@
 <div class="image-section">
     <img src="assets/images/consultation2.jpg" alt="" height="350px" width="100%" style="object-fit:cover;">
 </div>
-@include('partials._search')
+@include('partials._date_search')
 
+<div class="container">
 <div class="schedule-content">
     @foreach ($departments->whereIn('id',[1,2,7,12]) as $dept)
         
@@ -44,6 +45,7 @@
     </div>
 </div><br/>
 @endforeach
+</div>
 </div>
 
 
