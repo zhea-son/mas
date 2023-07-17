@@ -17,52 +17,64 @@ class DepartmentSeeder extends Seeder
     public function run()
     {
         DB::table('departments')->insert([
-            'department' => "General",
+            'department' => "General Medicine",
             'room_no' => "101",
         ]);
         DB::table('departments')->insert([
-            'department' => "Orthopedic",
+            'department' => "Dentistry",
             'room_no' => "102",
         ]);
         DB::table('departments')->insert([
-            'department' => "Neurology",
+            'department' => "Opthalmology",
             'room_no' => "103",
         ]);
         DB::table('departments')->insert([
-            'department' => "Urology",
+            'department' => "Dietician",
             'room_no' => "104",
         ]);
         DB::table('departments')->insert([
-            'department' => "Surgery",
+            'department' => "Gasteroentrology",
             'room_no' => "105",
         ]);
         DB::table('departments')->insert([
-            'department' => "Radiology",
+            'department' => "Gynaecology",
             'room_no' => "106",
         ]);
         DB::table('departments')->insert([
-            'department' => "Cardiology",
+            'department' => "Neurology",
             'room_no' => "201",
         ]);
         DB::table('departments')->insert([
-            'department' => "Physiotherapy",
+            'department' => "Orthopedic",
             'room_no' => "202",
         ]);
         DB::table('departments')->insert([
-            'department' => "Dermatology",
+            'department' => "Pediatrics",
             'room_no' => "203",
         ]);
         DB::table('departments')->insert([
-            'department' => "Medicine",
+            'department' => "Psychiatric",
             'room_no' => "204",
         ]);
         DB::table('departments')->insert([
-            'department' => "Hematology",
+            'department' => "Pulmonary",
             'room_no' => "205",
         ]);
         DB::table('departments')->insert([
-            'department' => "Dental",
+            'department' => "Urology",
             'room_no' => "206",
+        ]);
+        DB::table('departments')->insert([
+            'department' => "ENT",
+            'room_no' => "301",
+        ]);
+        DB::table('departments')->insert([
+            'department' => "Dermatology",
+            'room_no' => "302",
+        ]);
+        DB::table('departments')->insert([
+            'department' => "Cardiology",
+            'room_no' => "303",
         ]);
     }
 }
