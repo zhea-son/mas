@@ -1,11 +1,9 @@
-@extends('admin.layouts.master')
-
+@extends('pages.layouts.master')
+@section('title',"My Schedules")
 @section('content')
 
 <div class="container">
-    <br/>
     <a type="button" class="btn btn-primary" href="{{ route('admin.schedule.create') }}">+ Add Schedule</a>
-    <br/>
 
 <table class="table table-striped">
     <thead>

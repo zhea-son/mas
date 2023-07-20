@@ -1,8 +1,10 @@
-@extends('admin.layouts.master')
+@extends('pages.layouts.master')
+@section('title',"Edit Schedule")
 
 @section('content')
 
 <div class="container">
+    <a href="/admin/schedules"><u>Back</u></a>
     <form method="post" action="{{route('admin.schedule.update', $schedule->id)}}">
         @csrf
         @method('PUT')
