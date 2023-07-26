@@ -1,9 +1,9 @@
-@extends('admin.layouts.master')
+@extends('pages.layouts.master')
 @section('title', "Edit Department")
 @section('content')
 
 <div class="container">
-    <h2>Edit Department</h2><br/>
+  <a href="/admin/departments"><u>Back</u></a>
 <form action="{{ route('admin.department.update', $dept->id) }}" method="POST">
     @csrf 
     @method('PUT')

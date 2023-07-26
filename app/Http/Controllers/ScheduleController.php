@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Doctor;
 use App\Models\Schedule;
 use App\Models\Department;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
@@ -16,7 +18,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::latest()->paginate(8);
+        $schedules = Schedule::latest()->get();
         return view('admin.schedules.index', compact('schedules'));
     }
 
@@ -47,6 +49,7 @@ class ScheduleController extends Controller
             'date' => 'required',
             'from' => 'required',
             'to' => 'required',
+            'time_frame' => 'required',
         ]);
         $schedule = new Schedule();
         $schedule->doctor_id = $request['doctor'];
@@ -54,8 +57,25 @@ class ScheduleController extends Controller
         $schedule->from = $request['from'];
         $schedule->to = $request['to'];
         $schedule->date = $request['date'];
+        $schedule->time_frame = $request['time_frame'];
         // return $schedule->department;
-        $schedule->save();
+        $saved = $schedule->save();
+        // return $schedule;
+        if($saved){
+            $from = Carbon::parse($schedule->from);
+            $to = Carbon::parse($schedule->to);
+            $difference = ($from->diffInMinutes($to) / $schedule->time_frame);
+            // return $from->format('H:i:s');
+            // return Carbon::parse(gmdate("H:i:s",strtotime($from) + ($schedule->time_frame*60)));
+            for($i=1;$i<=$difference;$i++){
+                $appointment = new Appointment;
+                $appointment->schedule_id = $schedule->id;
+                $appointment->from = $from->format('H:i:s');
+                $appointment->to = gmdate("H:i:s",strtotime($from) + ($schedule->time_frame*60));
+                $appointment->save();
+                $from = Carbon::parse($appointment->to);
+            }
+        }  
         return redirect()->route('admin.schedule.index');
     }
 
@@ -99,6 +119,7 @@ class ScheduleController extends Controller
             'date' => 'required',
             'from' => 'required',
             'to' => 'required',
+            'time_frame' => 'required',
         ]);
         
         $schedule->doctor_id = $request['doctor'];
@@ -106,6 +127,7 @@ class ScheduleController extends Controller
         $schedule->from = $request['from'];
         $schedule->to = $request['to'];
         $schedule->date = $request['date'];
+        $schedule->time_frame = $request['time_frame'];
         // return $schedule->department;
         $schedule->save();
         return redirect()->route('admin.schedule.index');

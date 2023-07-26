@@ -1,11 +1,9 @@
-@extends('admin.layouts.master')
+@extends('pages.layouts.master')
 
 @section('content')
 
 <div class="container">
-    <br/>
     <a type="button" class="btn btn-primary" href="{{ route('admin.routine.create') }}">+ Add Routine</a>
-    <br/>
 
 <table class="table table-striped">
     <thead>

@@ -1,8 +1,10 @@
-@extends('admin.layouts.master')
+@extends('pages.layouts.master')
+@section('title',"Edit Schedule")
 
 @section('content')
 
 <div class="container">
+    <a href="/admin/schedules"><u>Back</u></a>
     <form method="post" action="{{route('admin.schedule.update', $schedule->id)}}">
         @csrf
         @method('PUT')
@@ -31,7 +33,7 @@
         <div class="row" style="margin-top:10px;">
             <div class="col-md-3"><label class="form-control">Date:</label></div>
             <div class="col-md-6">
-                <input type="date" class="form-control" name="date" value="{{ $schedule->date }}">
+                <input type="date" class="form-control" name="date" value="{{ $schedule->date }}" min="{{ date('Y-m-d') }}">
             </div>
         </div>
         <div class="row" style="margin-top:10px;">
@@ -44,6 +46,12 @@
             <div class="col-md-3"><label class="form-control">To:</label></div>
             <div class="col-md-6">
                 <input type="time" class="form-control" name="to" value="{{ $schedule->to }}">
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3"><label class="form-control">Time Frame:</label></div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="time_frame" value="{{ $schedule->time_frame }}>
             </div>
         </div>
 
