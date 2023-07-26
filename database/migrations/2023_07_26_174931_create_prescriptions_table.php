@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('appointments', function (Blueprint $table) {
+        Schema::create('prescriptions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('schedule_id')->references('id')->on('schedules');
-            $table->string('from');
-            $table->string('to');
-            $table->boolean('booked')->default(0);
+            $table->foreignId('booking_id')->references('id')->on('bookings');
+            $table->string('problem');
+            $table->string('medication');
+            $table->string('ticket_no');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('appointments');
+        Schema::dropIfExists('prescriptions');
     }
 };
