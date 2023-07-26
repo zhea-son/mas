@@ -11,6 +11,22 @@
     </a>
 </li>
 <li class="nav-item">
+    <a href="{{ route('admin.doctor.index') }}" class="nav-link {{ request()->routeIs('admin.doctor.*') ? 'active' : '' }}">
+        <i class="icon icon-user"></i>
+        <span>
+            Doctor
+        </span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('admin.department.index') }}" class="nav-link {{ request()->routeIs('admin.department.*') ? 'active' : '' }}">
+        <i class="icon icon-wall"></i>
+        <span>
+            Department
+        </span>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('admin.schedule.index') }}" class="nav-link {{ request()->routeIs('admin.schedule.*') ? 'active' : '' }}">
         <i class="icon icon-calendar"></i>
         <span>

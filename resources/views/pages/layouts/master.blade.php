@@ -48,10 +48,10 @@
                 </a>
 
                 <div class="dropdown-menu dropdown-menu-right">
-                    <a href="{{ route('admin.doctor.index') }}" class="dropdown-item"><i class="icon-user-plus"></i> View
-                        My Doctors</a>
-                    <a href="{{ route('admin.department.index') }}" class="dropdown-item"><i class="icon-user-minus"></i>
-                        View My Departments</a>
+                    <a href="" class="dropdown-item"><i class="icon-user-plus"></i> View
+                        All Users</a>
+                    <a href="" class="dropdown-item"><i class="icon-user-minus"></i>
+                        View All Staff</a>
                     </a>
                     <div class="dropdown-divider"></div>
 

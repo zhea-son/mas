@@ -32,7 +32,7 @@
         <div class="row" style="margin-top:10px;">
             <div class="col-md-3"><label class="form-control">Date:</label></div>
             <div class="col-md-6">
-                <input type="date" class="form-control" name="date">
+                <input type="date" class="form-control" name="date" min="{{ date('Y-m-d') }}">
             </div>
         </div>
         <div class="row" style="margin-top:10px;">
@@ -45,6 +45,12 @@
             <div class="col-md-3"><label class="form-control">To:</label></div>
             <div class="col-md-6">
                 <input type="time" class="form-control" name="to">
+            </div>
+        </div>
+        <div class="row" style="margin-top:10px;">
+            <div class="col-md-3"><label class="form-control">Time Frame:</label></div>
+            <div class="col-md-6">
+                <input type="text" class="form-control" name="time_frame">
             </div>
         </div>
 
