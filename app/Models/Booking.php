@@ -15,6 +15,10 @@ class Booking extends Model
         return $this->hasOne(Appointment::class);
     }
 
+    public function paitent(){
+        return $this->belongsTo(Patient::class);
+    }
+
     public function prescription(){
         return $this->hasOne(Prescription::class);
     }
