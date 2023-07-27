@@ -106,9 +106,13 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
 
     Route::prefix('bookings')->name('bookings.')->group(function(){
         Route::get('/bookings', [BookingController::class, 'index'])->name('index');
+        Route::post('/bookings/store', [BookingController::class, 'store'])->name('store');
     });
 
     Route::resource('patients', PatientController::class);
+    Route::post('/getpatient/withphone', [PatientController::class, 'getpatient'])->name('getpatient');
+
+    Route::get('/users', [HomeController::class, 'users'])->name('users.index');
 });
 
 // Route::post('/logout', [UserController::class, 'logout'])->name('logout');

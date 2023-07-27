@@ -14,7 +14,7 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
+        return Patient::all();
     }
 
     /**
@@ -81,5 +81,10 @@ class PatientController extends Controller
     public function destroy(Patient $patient)
     {
         //
+    }
+
+    public function getpatient(Request $request){
+        $patient = Patient::where('contact', $request->contact)->first();
+        return response()->json($patient);
     }
 }

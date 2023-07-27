@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Doctor;
 use App\Models\Routine;
 use App\Models\Schedule;
@@ -84,5 +85,9 @@ class HomeController extends Controller
         // return $item;
         return view('pages.schedules', compact('doctors','departments','schedules')); 
         
+    }
+
+    public function users(){
+        return User::where('id', '!=', 1)->get();
     }
 }
