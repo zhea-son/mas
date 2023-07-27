@@ -34,7 +34,7 @@
         <td>{{ $schedule->from }}</td>
         <td>{{ $schedule->to }}</td>
         <td style="display:flex;">
-            <a type="button" class="btn btn-info" href="{{ route('admin.schedule.edit', $schedule->id) }}">Edit</a>
+            <a type="button" class="btn btn-info" href="{{ route('admin.schedule.appointments', $schedule->id) }}">View Appointments</a>
             <form action="{{route('admin.schedule.destroy', $schedule->id)}}" method="POST">
                 @csrf
                 @method('DELETE')

@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('bookings', function (Blueprint $table) {
+        Schema::create('patients', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('appointment_id')->references('id')->on('appointments');
-            $table->string('remarks');
-            $table->string('status')->default("pending");
-            $table->boolean('complete')->default(0);
-            $table->foreignId('patient_id')->references('id')->on('patients');
+            $table->string('name');
+            $table->string('contact');
+            $table->string('address');
+            $table->string('relation')->nullable();
+            $table->date('dob');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('patients');
     }
 };

@@ -144,4 +144,14 @@ class ScheduleController extends Controller
         $schedule->delete();
         return back();
     }
+
+    public function view_appointments($id){
+        ;
+        $apps = Appointment::where('schedule_id', $id)->with('schedule')->get();
+        $docid = Schedule::where('id', $id)->value('doctor_id');
+        $deptid = Schedule::where('id', $id)->value('dept_id');
+        $doc = Doctor::where('id',$docid)->value('name');
+        $dept = Department::where('id',$deptid)->value('department');
+        return view('admin.appointments.index', compact('apps','doc','dept'));
+    }
 }

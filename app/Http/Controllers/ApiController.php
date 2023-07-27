@@ -38,8 +38,4 @@ class ApiController extends Controller
             return "Operation failed";
         }
     }
-
-    public function (){
-        
-    }
 }

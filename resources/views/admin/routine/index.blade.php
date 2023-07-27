@@ -38,7 +38,7 @@
             @endif    
           @endforeach</td>
         <td style="display:flex;">
-            <a type="button" class="btn btn-info" href="{{ route('admin.routine.edit', $schedule->id) }}">Edit</a>
+            <a type="button" class="btn btn-info" href="{{ route('admin.appointment.index', $schedule->id) }}">View Appointments</a>
             <form action="{{route('admin.routine.destroy', $schedule->id)}}" method="POST">
                 @csrf
                 @method('DELETE')

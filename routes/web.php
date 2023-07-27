@@ -6,9 +6,12 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\BookingController;
+use App\Http\Controllers\PatientController;
 use App\Http\Controllers\RoutineController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\DepartmentController;
+use App\Http\Controllers\AppointmentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,6 +81,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::get('/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedule.edit');
         Route::put('/update/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
         Route::delete('/delete/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
+        Route::get('/appointments/{id}', [ScheduleController::class, 'view_appointments'])->name('schedule.appointments');
     });
 
     Route::prefix('routine')->group(function() {
@@ -89,7 +93,22 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::delete('/delete/{routine}', [RoutineController::class, 'destroy'])->name('routine.destroy');
     });
 
-    
+    Route::resource('appointments', AppointmentController::class)->names([
+        'index' => 'appointment.index',
+        'create' => 'appointment.create',
+        'store' => 'appointment.store',
+        'show' => 'appointment.show',
+        'edit' => 'appointment.edit',
+        'update' => 'appointment.update',
+        'destroy' => 'appointment.destroy',
+    ]);
+    Route::post('/appointments/{id}/cancel', [AppointmentController::class, 'cancel'])->name('appointment.cancel');
+
+    Route::prefix('bookings')->name('bookings.')->group(function(){
+        Route::get('/bookings', [BookingController::class, 'index'])->name('index');
+    });
+
+    Route::resource('patients', PatientController::class);
 });
 
 // Route::post('/logout', [UserController::class, 'logout'])->name('logout');
