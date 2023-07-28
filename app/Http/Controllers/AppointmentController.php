@@ -86,15 +86,14 @@ class AppointmentController extends Controller
     }
 
     public function cancel($id){
-        // return $appointment;
-        $appointment = Appointment::where('id', $id)->with('schedule','booking')->first();
+        $appointment = Appointment::where('id',$id)->with('booking')->first();
         $appointment->booked = 0;
         $saved = $appointment->save();
         if($saved){
-            $booking = Booking::where('appointment_id',$appointment->id)->where('status',"pending")->get();
+            $booking = Booking::where('appointment_id',$appointment->id)->where('status',"pending")->first();
             $booking->status = "canceled";
             $booking->save();
+            return back();
         }
-        return back();
     }
 }

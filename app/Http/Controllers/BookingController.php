@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Booking;
+use App\Models\Patient;
+use App\Models\Appointment;
 use Illuminate\Http\Request;
 
 class BookingController extends Controller
@@ -35,7 +37,39 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // return $request;
+        $request->validate([
+            'name' => 'required',
+            'address' => 'required',
+            'dob' => 'required',
+            'contact' => 'required',
+            'remarks' => 'required',
+            'appointment_id' => 'required',
+        ]);
+        $patient = Patient::where('contact', $request->contact)->first();
+        if($patient == null){
+            $patient = new Patient;
+            $patient->name = $request->name;
+            $patient->address = $request->address;
+            $patient->contact = $request->contact;
+            $patient->dob = $request->dob;
+            $patient->save();
+        }
+
+        $booking = new Booking;
+        $booking->patient_id = $patient->id;
+        $booking->appointment_id = $request->appointment_id;
+        $booking->remarks = $request->remarks;
+        $booking->status = "pending";
+        $saved = $booking->save();
+        if($saved){
+            $appointment = Appointment::find($request->appointment_id);
+            $appointment->booked = 1;
+            $appointment->save();
+            return back();
+        }
+        return response()->json(["Not booked"]);
+
     }
 
     /**
@@ -81,5 +115,26 @@ class BookingController extends Controller
     public function destroy(Booking $booking)
     {
         //
+    }
+
+    public function user_store(Request $request){
+        $request->validate([
+            'appointment_id' => 'required',
+            'patient_id' => 'required',
+            'remarks' => 'required',
+        ]);
+        $booking = new Booking;
+        $booking->patient_id = $request->patient_id;
+        $booking->appointment_id = $request->appointment_id;
+        $booking->remarks = $request->remarks;
+        $booking->status = "pending";
+        $saved = $booking->save();
+        if($saved){
+            $appointment = Appointment::find($request->appointment_id);
+            $appointment->booked = 1;
+            $appointment->save();
+            return back();
+        }
+        return response()->json(["Not booked"]);
     }
 }

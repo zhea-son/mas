@@ -29,8 +29,8 @@
         <th scope="row">{{ $loop->index + 1 }}</th>
         <td>{{ $schedule->date }}</td>
         <td>{{ $schedule->doctor->name }}</td>
-        <td>{{ $schedule->department->department }} minutes</td>
-        <td>{{ $schedule->time_frame }}</td>
+        <td>{{ $schedule->department->department }}</td>
+        <td>{{ $schedule->time_frame }} minutes</td>
         <td>{{ $schedule->from }}</td>
         <td>{{ $schedule->to }}</td>
         <td style="display:flex;">
