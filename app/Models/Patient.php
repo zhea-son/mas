@@ -10,6 +10,6 @@ class Patient extends Model
     use HasFactory;
 
     public function bookings(){
-        return $this->hasMany(Booking::class);
+        return $this->hasMany(Booking::class,'patient_id');
     }
 }

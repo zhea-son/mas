@@ -12,11 +12,11 @@ class Booking extends Model
     use HasFactory;
 
     public function appointment(){
-        return $this->hasOne(Appointment::class);
+        return $this->belongsTo(Appointment::class,'appointment_id');
     }
 
-    public function paitent(){
-        return $this->belongsTo(Patient::class);
+    public function patient(){
+        return $this->belongsTo(Patient::class,'patient_id');
     }
 
     public function prescription(){

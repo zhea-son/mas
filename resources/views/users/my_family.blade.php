@@ -5,7 +5,10 @@
 @section('content')
 <div class="container">
 <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#modal_example">Add Member</button>
+@php if($family != null) $me = $family->where('relation', "Self")->first(); @endphp
+@if(!isset($me))
 <button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#modal_example1">Make me a Patient</button>
+@endif
 <table class="table table-hover">
     <thead>
         <th>#</th>
@@ -32,7 +35,6 @@
             <td>{{ $item->contact }}</td>    
             <td>
                     <a style="margin-left:5px;" href="{{route('user.family.show.edit', $item->id)}}" type="button" class="btn btn-info">Edit</a>
-                </form>
             </td>    
         </tr>
             @endforeach
@@ -45,7 +47,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">Enter Patient Details</h5>
-          <button type="button" class="close" data-dismiss="modal">×</button>
+          <button type="button" class="close" data-bs-dismiss="modal">×</button>
         </div>
 
         <div class="modal-body">
@@ -60,7 +62,7 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-link" data-bs-dismiss="modal">Close</button>
           <button role="submit" class="btn btn-primary">Save changes</button>
         </div>
       </form>
