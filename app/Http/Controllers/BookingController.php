@@ -116,4 +116,25 @@ class BookingController extends Controller
     {
         //
     }
+
+    public function user_store(Request $request){
+        $request->validate([
+            'appointment_id' => 'required',
+            'patient_id' => 'required',
+            'remarks' => 'required',
+        ]);
+        $booking = new Booking;
+        $booking->patient_id = $request->patient_id;
+        $booking->appointment_id = $request->appointment_id;
+        $booking->remarks = $request->remarks;
+        $booking->status = "pending";
+        $saved = $booking->save();
+        if($saved){
+            $appointment = Appointment::find($request->appointment_id);
+            $appointment->booked = 1;
+            $appointment->save();
+            return back();
+        }
+        return response()->json(["Not booked"]);
+    }
 }

@@ -119,3 +119,14 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
 Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::prefix('user')->name('user.')->middleware(['auth','user-role:user'])->group(function(){
+    Route::get('my-family', [UserController::class, 'my_family'])->name('family');
+    Route::get('my-bookings', [UserController::class, 'my_bookings'])->name('bookings');
+    Route::get('my-appointments', [UserController::class, 'my_appointments'])->name('appointments');
+    Route::post('add-member', [UserController::class, 'add_member'])->name('add_member');
+    Route::post('add-self', [UserController::class, 'add_self'])->name('add_self');
+    Route::get('edit-member/{id}', [UserController::class, 'show_edit'])->name('family.show.edit');
+    Route::put('edit-member', [UserController::class, 'edit_member'])->name('family.edit');
+    Route::post('book-appointment', [BookingController::class, 'user_store'])->name('bookings.store');
+});

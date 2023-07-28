@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Doctor;
+use App\Models\Patient;
 use App\Models\Routine;
 use App\Models\Schedule;
 use App\Models\Department;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -46,8 +48,9 @@ class HomeController extends Controller
     {
         $doctors = Doctor::all();
         $departments = Department::all();
-        $schedules = Schedule::where('complete',0)->get();
-        return view('pages.schedules', compact('doctors','departments','schedules'));
+        $schedules = Schedule::where('complete',0)->with('doctor','appointments')->get();
+        $family = Patient::where('user_id', Auth::user()->id)->get();
+        return view('pages.schedules', compact('doctors','departments','schedules','family'));
     }
     public function routines()
     {
@@ -61,24 +64,37 @@ class HomeController extends Controller
         $doctors = Doctor::all();
         $departments = Department::all();
         $routines = Routine::all();
-        return view('pages.appointments',compact('routines','doctors','departments'));
+        $schedules = Schedule::where('complete',0)->get();
+        return view('pages.appointments',compact('schedules','doctors','departments'));
     }
-    public function search(Request $request){
-        // return $request;
+    public function search_date(Request $request){
         if($request->search_tag == "doctor"){
             $item = Doctor::where('name', $request->search_name)->first();
-            $schedules = Schedule::where('doctor_id',$item->id)->where('complete',false)->get();
+            if($request->search_date != null){
+                $schedules = Schedule::where('doctor_id',$item->id)->where('date', $request->search_date)->where('complete',false)->with('doctor','department')->get();
+            }else{
+                $schedules = Schedule::where('doctor_id',$item->id)->where('complete',false)->with('doctor')->get();
+            }
         }
         else if($request->search_tag == "department"){
             $item = Department::where('department', $request->search_name)->first();
-            $schedules = Schedule::where('dept_id',$item->id)->where('complete',false)->get();
+            if($request->search_date != null){
+                $schedules = Schedule::where('doctor_id',$item->id)->where('date', $request->search_date)->where('complete',false)->with('doctor','department')->get();
+            }else{
+                $schedules = Schedule::where('doctor_id',$item->id)->where('complete',false)->with('doctor')->get();
+            }
         }
         else if($request->search_tag == null && $request->search_name == null){
-            $schedules = Schedule::where('complete',false)->get();
+            if($request->search_date != null){
+                $schedules = Schedule::where('date', $request->search_date)->where('complete',false)->with('doctor','department')->get();
+            }else{
+                $schedules = Schedule::where('complete',false)->with('doctor')->get();
+            }
         }
         else{
             return "Not valid!! Select either doctor or department.";
         }
+        return $schedules;
 
         $doctors = Doctor::all();
         $departments = Department::all();

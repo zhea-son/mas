@@ -26,9 +26,11 @@
               {{ Auth::user()->name }}
             </a>
             <ul class="dropdown-menu">
-            @if(Auth::user()->role == 0)
-              <li><a class="dropdown-item" href="#">My Appointments</a></li>
-              <li><a class="dropdown-item" href="#">My Bookings</a></li>
+            @if(Auth::user()->role == "user")
+              <li><a class="dropdown-item" href="{{ route('user.family') }}">My Family</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" href="{{ route('user.bookings') }}">My Bookings</a></li>
+              <li><a class="dropdown-item" href="{{ route('user.appointments') }}">My Appointments</a></li>
             @else
               <li><a class="dropdown-item" href="/admin">Dashboard</a></li>
             @endif
