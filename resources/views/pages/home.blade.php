@@ -14,9 +14,9 @@
           <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/building1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
           <div class="container">
             <div class="carousel-caption text-start">
-              <h1><b>Get ready for checkup</b></h1>
-              <p>Some representative placeholder content for the first slide of the carousel.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Sign up today</a></p>
+              <h1><b>Where Expertise Meets Empathy</b></h1>
+              <p>Highlighting the combination of medical expertise and compassion</p>
+              <p><a class="btn btn-lg btn-primary" href="/contact">Contact</a></p>
             </div>
           </div>
         </div>
@@ -25,9 +25,9 @@
           <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/operation4.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
           <div class="container">
             <div class="carousel-caption text-end">
-              <h1><b>One more for good measure.</b></h1>
-              <p>Some representative placeholder content for the third slide of this carousel.</p>
-              <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
+              <h1><b>Your Journey to Better Health Starts Here</b></h1>
+              <p>Encouraging patients to take the first step towards wellness</p>
+              <p><a class="btn btn-lg btn-primary" href="/register">Sign up today</a></p>
             </div>
           </div>
         </div>
@@ -49,77 +49,103 @@
     ================================================== -->
     <!-- Wrap the rest of the page in another container to center all the content. -->
   
-    <div class="container marketing">
-  
-      <!-- Three columns of text below the carousel -->
-      <div class="row  my-5">
-        <div class="col-lg-4 border border-primary py-2"><center>
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-          <h2 class="fw-normal">Heading</h2>
-          <p>Some representative placeholder content for the three columns of text below the carousel. This is the first column.</p>
-          <p><a class="btn btn-primary" href="#">View details &raquo;</a></p></center>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4"><center>
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-          <h2 class="fw-normal">Heading</h2>
-          <p>Another exciting bit of representative placeholder content. This time, we've moved on to the second column.</p>
-          <p><a class="btn btn-primary" href="#">View details &raquo;</a></p></center>
-        </div><!-- /.col-lg-4 -->
-        <div class="col-lg-4">
-            <center>
-          <svg class="bd-placeholder-img rounded-circle" width="140" height="140" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-color)"/></svg>
-          <h2 class="fw-normal">Heading</h2>
-          <p>And lastly this, the third column of representative placeholder content.</p>
-          <p><a class="btn btn-primary" href="#">View details &raquo;</a></p>
-            </center>
-        </div><!-- /.col-lg-4 -->
-      </div><!-- /.row -->
-  
-  
-      <!-- START THE FEATURETTES -->
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">First featurette heading. <span class="text-body-secondary">It’ll blow your mind.</span></h2>
-          <p class="lead">Some great placeholder content for the first featurette here. Imagine some exciting prose here.</p>
+    <div class="container col-xxl-8 px-4 py-5">
+      <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+        <div class="col-10 col-sm-8 col-lg-6">
+          <img src="/assets/images/lol.jpg" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
         </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
+        <div class="col-lg-6">
+          <h1 class="display-5 fw-bold lh-1 mb-3">Your Health Matters</h1>
+          <p class="lead">At CLINIC, we are dedicated to providing compassionate and comprehensive healthcare services to our patients. With a team of highly skilled and experienced doctors and staff, we are committed to ensuring your well-being.</p>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+            <a href="/appointments" type="button" class="btn btn-primary btn-lg px-4 me-md-2">Book an Appointment</a>
+          </div>
         </div>
       </div>
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7 order-md-2">
-          <h2 class="featurette-heading fw-normal lh-1">Oh yeah, it’s that good. <span class="text-body-secondary">See for yourself.</span></h2>
-          <p class="lead">Another featurette? Of course. More placeholder content here to give you an idea of how this layout would work with some actual real-world content in place.</p>
-        </div>
-        <div class="col-md-5 order-md-1">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-  
-      <div class="row featurette">
-        <div class="col-md-7">
-          <h2 class="featurette-heading fw-normal lh-1">And lastly, this one. <span class="text-body-secondary">Checkmate.</span></h2>
-          <p class="lead">And yes, this is the last block of representative placeholder content. Again, not really intended to be actually read, simply here to give you a better view of what this would look like with some actual content. Your content.</p>
-        </div>
-        <div class="col-md-5">
-          <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="var(--bs-secondary-bg)"/><text x="50%" y="50%" fill="var(--bs-secondary-color)" dy=".3em">500x500</text></svg>
-        </div>
-      </div>
-  
-      <hr class="featurette-divider">
-  
-      <!-- /END THE FEATURETTES -->
-  
-    </div><!-- /.container -->
-</main>
+    </div>
 
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold">The Experts You Can Trust!</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">We take pride in bringing you the finest medical care, delivered by a team of highly skilled and dedicated professionals!</p>
+      </div>
+  
+        <div class="container px-4 py-5" id="custom-cards">
+
+          <div class="row row-cols-1 row-cols-lg-3 align-items-stretch g-4 py-5">
+            @foreach ($topdoctors->take(3) as $item)
+            <div class="col">
+              <div class="card card-cover h-100 overflow-hidden text-white bg-dark rounded-5 shadow-lg">
+                <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+                  <h2 class="mb-4 display-6 lh-1 fw-bold">{{$item->name}}</h2>
+                  <ul class="list-unstyled mt-auto">
+                    <li class="me-auto">
+                      <img src="/assets/images/doctor1.jpg" style="object-fit:cover;" alt="Bootstrap" width="150" height="150" class="rounded-circle border border-white">
+                    </li>
+                  </ul>
+                  <ul class="d-flex list-unstyled mt-auto justify-content-center">
+                    <li class="d-flex align-items-center me-3">
+                      <button class="btn btn-light">{{$item->degree}}</button>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <button class="btn btn-light">{{$item->specialization->specialization}}</button>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>   
+            @endforeach
+          </div>
+        </div>
+    </div>
+    <!-- /.row -->
+  
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Mission</h1>
+          <p class="fs-4">Our mission is to promote and enhance the health and quality of life of our patients. We strive to provide compassionate, patient-centered care, emphasizing preventive measures and advanced treatments to achieve the best possible outcomes.</p>
+        </div>
+      </div>
+      </div>
+        <div class="col-md-6">
+      <div class="p-5 mb-4 bg-light rounded-3">
+        <div class="container-fluid py-5">
+          <h1 class="display-5 fw-bold">Services</h1>
+          <p class="fs-4">We offer a wide range of medical services to address various health concerns. From routine check-ups and preventive care to specialized treatments, we have the expertise to provide comprehensive solutions for all your healthcare needs.</p>
+        </div>
+      </div>
+      </div>
+    </div>
+    </div>
     
+
+  <div class="container col-xl-10 col-xxl-8 px-4 py-5">
+    <div class="row align-items-center g-lg-5 py-5">
+      <div class="col-lg-7 text-center text-lg-start">
+        <h1 class="display-4 fw-bold lh-1 mb-3">Give us Your Review</h1>
+        <p class="col-lg-10 fs-4">Your positive experiences and success stories inspire us to continue providing the best possible care to our patients. We believe that sharing your thoughts can help others who are seeking top-notch healthcare services like yours</p>
+      </div>
+      <div class="col-md-10 mx-auto col-lg-5">
+        <form class="p-4 p-md-5 border rounded-3 bg-light">
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" placeholder="Your Name">
+            <label for="floatingInput">Name</label>
+          </div>
+          <div class="form-floating mb-3">
+            <textarea style="height:150px;" rows="4" class="form-control"></textarea>
+            <label for="floatingPassword">Remarks</label>
+          </div>
+          
+          <button class="w-100 btn btn-lg btn-primary" type="submit">Send</button>
+          <hr class="my-4">
+          <small class="text-muted">Feel free to mention Negatives!</small>
+        </form>
+      </div>
+    </div>
+  </div>
+
+          
 @endsection

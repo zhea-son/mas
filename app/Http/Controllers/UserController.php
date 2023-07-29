@@ -66,7 +66,7 @@ class UserController extends Controller
         }
         $bookings = Booking::whereIn('patient_id', $fids)->whereHas('appointment', function($query) use ($sids){
             $query->whereIn('schedule_id', $sids);
-        })->get();
+        })->latest()->get();
         return view('users.my_bookings',compact('bookings'));
     }
     public function my_bookings(){
@@ -81,7 +81,7 @@ class UserController extends Controller
         }
         $bookings = Booking::whereIn('patient_id', $fids)->whereHas('appointment', function($query) use ($sids){
             $query->whereIn('schedule_id', $sids);
-        })->with('appointment','patient')->get();
+        })->with('appointment','patient')->latest()->get();
         return view('users.my_bookings',compact('bookings'));
     }
 

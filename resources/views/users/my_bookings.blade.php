@@ -13,6 +13,7 @@
     @else
     <a class="btn btn-primary my-2" href="{{route('user.bookings')}}">View My Bookings</a>
     @endif
+    <input type="text" class="form-control my-2" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
 
 <table class="table table-hover">
     <thead>
@@ -25,7 +26,7 @@
         <th>Status</th>
         <th>Action</th>
     </thead>
-    <tbody>
+    <tbody id="myTable">
         <tr>
             @if (count($bookings) == 0)
             <td colspan="7">No Bookings Yet</td>
@@ -54,7 +55,7 @@
                 <form action="{{route('user.bookings.cancel', $item->id)}}" method="POST">
                     @csrf
                     @method('PUT')
-                    <button role="submit" class="btn btn-warning mx-2">Cancel</button>
+                    <button id="hlo" role="submit" class="btn btn-warning mx-2">Cancel</button>
                 </form>
                 @endif
             </td>    
@@ -68,6 +69,19 @@
 
 @section('custom-script')
 
+<script>
+
+    $("#inputSearch").keyup(function(){
+        console.log("Hi");
+      var search = $(this).val().toLowerCase();
+      $("#myTable tr").filter(function(){
+        $(this).toggle($(this).text().toLowerCase().indexOf(
+          search
+        )>-1);
+      });
+    });
+    
+</script>
 
 @endsection
 

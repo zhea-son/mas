@@ -4,6 +4,8 @@
 
 <div class="container">
     <a type="button" class="btn btn-primary" href="{{ route('admin.department.create') }}">+ Add Department</a>
+    <input type="text" class="form-control" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
+    
     <table class="table table-striped">
         <thead>
           <tr>
@@ -13,7 +15,7 @@
             <th scope="col">Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody id="myTable">
             <tr>
             @if(count($depts) == 0)
                 <td colspan="4">No Departments Added.</td>
@@ -40,5 +42,22 @@
     {{-- {{ $depts->links() }} --}}
 
 </div>
+
+@endsection
+
+@section('custom-script')
+
+<script>
+
+$("#inputSearch").keyup(function(){
+  var search = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function(){
+    $(this).toggle($(this).text().toLowerCase().indexOf(
+      search
+    )>-1);
+  });
+});
+
+</script>
 
 @endsection

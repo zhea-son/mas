@@ -11,6 +11,6 @@ class Department extends Model
     use HasFactory;
 
     public function schedules(){
-        return $this->hasMany(Schedule::class);
+        return $this->hasMany(Schedule::class,'dept_id');
     }
 }
