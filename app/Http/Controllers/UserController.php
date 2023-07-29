@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use App\Models\Booking;
 use App\Models\Patient;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -53,21 +54,35 @@ class UserController extends Controller
     }
 
     public function my_appointments(){
-        $ids = [];
+        $fids = [];
         $family = Patient::where('user_id', Auth::user()->id)->get();
         foreach($family as $item){
-            $ids[] = $item->id;
+            $fids[] = $item->id;
         }
-        $bookings = Booking::whereIn('patient_id', $ids)->get();
-        return $bookings;
+        $sids = [];
+        $schedule = Schedule::where('complete',true)->get();
+        foreach($schedule as $item){
+            $sids[] = $item->id;
+        }
+        $bookings = Booking::whereIn('patient_id', $fids)->whereHas('appointment', function($query) use ($sids){
+            $query->whereIn('schedule_id', $sids);
+        })->get();
+        return view('users.my_bookings',compact('bookings'));
     }
     public function my_bookings(){
         $family = Patient::where('user_id', Auth::user()->id)->get();
-        $ids = [];
+        $fids = [];
         foreach($family as $item){
-            $ids[] = $item->id;
+            $fids[] = $item->id;
         }
-        return $family;
+        $schedule = Schedule::where('complete',false)->get();
+        foreach($schedule as $item){
+            $sids[] = $item->id;
+        }
+        $bookings = Booking::whereIn('patient_id', $fids)->whereHas('appointment', function($query) use ($sids){
+            $query->whereIn('schedule_id', $sids);
+        })->with('appointment','patient')->get();
+        return view('users.my_bookings',compact('bookings'));
     }
 
     public function add_self(Request $request){

@@ -12,10 +12,10 @@ class Appointment extends Model
     use HasFactory;
 
     public function schedule(){
-        return $this->belongsTo(Schedule::class);
+        return $this->belongsTo(Schedule::class,'schedule_id');
     }
 
     public function booking(){
-        return $this->hasOne(Booking::class);
+        return $this->hasOne(Booking::class, 'appointment_id');
     }
 }

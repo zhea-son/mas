@@ -129,4 +129,5 @@ Route::prefix('user')->name('user.')->middleware(['auth','user-role:user'])->gro
     Route::get('edit-member/{id}', [UserController::class, 'show_edit'])->name('family.show.edit');
     Route::put('edit-member', [UserController::class, 'edit_member'])->name('family.edit');
     Route::post('book-appointment', [BookingController::class, 'user_store'])->name('bookings.store');
+    Route::put('booking/cancel/{id}', [BookingController::class, 'user_cancel'])->name('bookings.cancel');
 });

@@ -86,7 +86,9 @@ class AppointmentController extends Controller
     }
 
     public function cancel($id){
-        $appointment = Appointment::where('id',$id)->with('booking')->first();
+        $appointment = Appointment::where('id',$id)->whereHas('schedule', function($query){
+            $query->where('complete', false);
+        })->with('booking')->first();
         $appointment->booked = 0;
         $saved = $appointment->save();
         if($saved){

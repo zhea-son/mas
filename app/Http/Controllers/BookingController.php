@@ -137,4 +137,18 @@ class BookingController extends Controller
         }
         return response()->json(["Not booked"]);
     }
+
+    public function user_cancel($id){
+        $booking = Booking::find($id);
+        $appointment = Appointment::where('id', $booking->id)->whereHas('schedule', function($query){
+            $query->where('complete', false);
+        })->first();
+        $appointment->booked = 0;
+        $saved = $appointment->save();
+        if($saved){
+            $booking->status = "canceled";
+            $booking->save();
+            return back();
+        }
+    }
 }
