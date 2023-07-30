@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg" style="background-color:rgb(26, 152, 142);">
+<nav class="navbar navbar-expand-lg" style="height:80px;background-color:rgb(26, 152, 142);">
     <div class="container">
       <a class="navbar-brand" href="#">MAS</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">

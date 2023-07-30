@@ -5,6 +5,8 @@
 @section('content')
 <div class="container">
 <button type="button" class="btn btn-primary my-2" data-bs-toggle="modal" data-bs-target="#modal_example">Add Member</button>
+<input type="text" class="form-control my-2" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
+
 @php if($family != null) $me = $family->where('relation', "Self")->first(); @endphp
 @if(!isset($me))
 <button type="button" class="btn btn-warning m-2" data-bs-toggle="modal" data-bs-target="#modal_example1">Make me a Patient</button>
@@ -19,7 +21,7 @@
         <th>Contact</th>
         <th>Action</th>
     </thead>
-    <tbody>
+    <tbody id="myTable">
         <tr>
             @if (count($family) == 0)
             <td colspan="7">No members added yet.</td>
@@ -99,6 +101,23 @@
 @endsection
 
 @section('custom-script')
+
+
+
+<script>
+
+$("#inputSearch").keyup(function(){
+  console.log("Hi");
+  var search = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function(){
+    $(this).toggle($(this).text().toLowerCase().indexOf(
+      search
+    )>-1);
+  });
+});
+
+</script>
+
 
 
 @endsection

@@ -6,7 +6,7 @@
 <div class="container">
     
     <a type="button" class="btn btn-primary" href="{{ route('admin.doctor.create') }}">+ Add Doctor</a>
-    
+    <input type="text" class="form-control" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
 
     {{-- <div class="row" style="margin-top:5px;">
       @foreach ($docs as $item)
@@ -52,7 +52,7 @@
                     <th>Action</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody id="myTable">
                 @foreach ($docs as $item)
                     
                 <tr>
@@ -82,5 +82,22 @@
     {{-- {{ $docs->links() }} --}}
 
 </div>
+
+@endsection
+
+@section('custom-script')
+
+<script>
+
+$("#inputSearch").keyup(function(){
+  var search = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function(){
+    $(this).toggle($(this).text().toLowerCase().indexOf(
+      search
+    )>-1);
+  });
+});
+
+</script>
 
 @endsection

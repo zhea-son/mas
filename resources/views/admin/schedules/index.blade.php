@@ -4,7 +4,7 @@
 
 <div class="container">
     <a type="button" class="btn btn-primary" href="{{ route('admin.schedule.create') }}">+ Add Schedule</a>
-
+    <input class="form-control" id="inputSearch" style="width:300px;float:right;" type="text" placeholder="Search">
 <table class="table table-striped">
     <thead>
       <tr>
@@ -18,7 +18,7 @@
         <th scope="col">Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="myTable">
         <tr>
         @if(count($schedules) == 0)
             <td colspan="7">No Schedules Added.</td>
@@ -50,5 +50,22 @@
 
 
 {{-- {{ $schedules->links() }} --}}
+
+@endsection
+
+@section('custom-script')
+
+<script>
+
+$("#inputSearch").keyup(function(){
+  var search = $(this).val().toLowerCase();
+  $("#myTable tr").filter(function(){
+    $(this).toggle($(this).text().toLowerCase().indexOf(
+      search
+    )>-1);
+  });
+});
+
+</script>
 
 @endsection

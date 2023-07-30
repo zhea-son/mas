@@ -40,7 +40,6 @@ Route::get('/shop', function () {
     return view('pages.shop');
 })->name('pages.shop');
 
-Route::post('/search',[HomeController::class, 'search'])->name('search');
 Route::post('/search_date',[HomeController::class, 'search_date'])->name('search.date');
 Route::get('/home1', function(){
     return view('home1');
