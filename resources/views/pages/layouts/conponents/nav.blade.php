@@ -43,7 +43,7 @@
     </a>
 </li> --}}
 <li class="nav-item">
-    <a href="" class="nav-link {{ request()->routeIs('admin.checkup.*') ? 'active' : '' }}">
+    <a href="/admin/checkups" class="nav-link {{ request()->routeIs('admin.checkups.*') ? 'active' : '' }}">
         <i class="icon icon-add"></i>
         <span>
             Checkups

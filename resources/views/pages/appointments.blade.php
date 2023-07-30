@@ -30,7 +30,7 @@
         @if(count($schedules->where('dept_id', $dept->id)) == 0)
             <p>No schedules yet. </p>
         @endif
-        @foreach ($schedules->where('dept_id', $dept->id)->latest()->take(4) as $item)   
+        @foreach ($schedules->where('dept_id', $dept->id)->take(4) as $item)   
         <div class="col-md-3">
             <div class="card" style="width: 18rem;">
             <img class="card-img-top" src="/assets/images/doctor1.jpg" alt="Card image cap">

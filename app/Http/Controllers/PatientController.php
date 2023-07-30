@@ -14,7 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        return Patient::latest()->get();
+        $users = Patient::latest()->get();
+        return view('admin.patients.index', compact('users'));
     }
 
     /**

@@ -72,6 +72,7 @@ class UserController extends Controller
     public function my_bookings(){
         $family = Patient::where('user_id', Auth::user()->id)->get();
         $fids = [];
+        $sids = [];
         foreach($family as $item){
             $fids[] = $item->id;
         }
@@ -82,6 +83,7 @@ class UserController extends Controller
         $bookings = Booking::whereIn('patient_id', $fids)->whereHas('appointment', function($query) use ($sids){
             $query->whereIn('schedule_id', $sids);
         })->with('appointment','patient')->latest()->get();
+        // return $bookings;
         return view('users.my_bookings',compact('bookings'));
     }
 
