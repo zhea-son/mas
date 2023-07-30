@@ -3,13 +3,13 @@
 @if(Route::currentRouteName() == 'user.bookings')
 @section('title', "My Bookings")
 @else
-@section('title', "My Appointments")
+@section('title', "My History")
 @endif
 
 @section('content')
 <div class="container">
     @if(Route::currentRouteName() == 'user.bookings')
-    <a class="btn btn-primary my-2" href="{{route('user.appointments')}}">View My Appointments</a>
+    <a class="btn btn-primary my-2" href="{{route('user.appointments')}}">View My History</a>
     @else
     <a class="btn btn-primary my-2" href="{{route('user.bookings')}}">View My Bookings</a>
     @endif
@@ -51,7 +51,7 @@
             </td>    
             <td style="display:flex;">
                 <a style="margin-left:5px;" href="" type="button" class="btn btn-info">View</a>
-                @if($item->status != "canceled")
+                @if($item->status == "pending")
                 <form action="{{route('user.bookings.cancel', $item->id)}}" method="POST">
                     @csrf
                     @method('PUT')

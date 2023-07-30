@@ -68,7 +68,7 @@ class HomeController extends Controller
         $departments = Department::all();
         $topdept = Department::withCount('schedules')
             ->orderByDesc('schedules_count')->get();
-        $schedules = Schedule::where('complete',0)->get();
+        $schedules = Schedule::where('complete',0)->latest()->get();
         // return $topdept;
         return view('pages.appointments',compact('schedules','doctors','departments','topdept'));
     }
@@ -117,6 +117,7 @@ class HomeController extends Controller
     }
 
     public function users(){
-        return User::where('id', '!=', 1)->get();
+        $users = User::where('id', '!=', 1)->get();
+        return view('admin.users.index', compact('users'));
     }
 }

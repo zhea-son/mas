@@ -30,7 +30,7 @@
               <li><a class="dropdown-item" href="{{ route('user.family') }}">My Family</a></li>
               <li><hr class="dropdown-divider"></li>
               <li><a class="dropdown-item" href="{{ route('user.bookings') }}">My Bookings</a></li>
-              <li><a class="dropdown-item" href="{{ route('user.appointments') }}">My Appointments</a></li>
+              <li><a class="dropdown-item" href="{{ route('user.appointments') }}">My Booking History</a></li>
             @else
               <li><a class="dropdown-item" href="/admin">Dashboard</a></li>
             @endif

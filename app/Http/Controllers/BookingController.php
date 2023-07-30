@@ -133,14 +133,14 @@ class BookingController extends Controller
             $appointment = Appointment::find($request->appointment_id);
             $appointment->booked = 1;
             $appointment->save();
-            return back();
+            return redirect()->route('user.bookings');
         }
         return response()->json(["Not booked"]);
     }
 
     public function user_cancel($id){
         $booking = Booking::find($id);
-        $appointment = Appointment::where('id', $booking->id)->whereHas('schedule', function($query){
+        $appointment = Appointment::where('id', $booking->appointment_id)->whereHas('schedule', function($query){
             $query->where('complete', false);
         })->first();
         $appointment->booked = 0;
@@ -148,7 +148,7 @@ class BookingController extends Controller
         if($saved){
             $booking->status = "canceled";
             $booking->save();
-            return back();
+            return redirect()->route('user.bookings');
         }
     }
 }

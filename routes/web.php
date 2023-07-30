@@ -81,7 +81,11 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::put('/update/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
         Route::delete('/delete/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
         Route::get('/appointments/{id}', [ScheduleController::class, 'view_appointments'])->name('schedule.appointments');
+        Route::put('/complete/{id}', [ScheduleController::class, 'complete'])->name('schedule.complete');
     });
+
+    Route::get('/checkups', [ScheduleController::class, 'checkups'])->name('checkups.index');
+    Route::get('/checkups/appointments/{id}', [ScheduleController::class, 'view_completed_appointments'])->name('checkups.appointments');
 
     Route::prefix('routine')->group(function() {
         Route::get('/', [RoutineController::class, 'index'])->name('routine.index');
