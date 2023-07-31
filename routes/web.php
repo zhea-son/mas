@@ -108,8 +108,10 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
     Route::post('/appointments/{id}/cancel', [AppointmentController::class, 'cancel'])->name('appointment.cancel');
 
     Route::prefix('bookings')->name('bookings.')->group(function(){
-        Route::get('/bookings', [BookingController::class, 'index'])->name('index');
+        Route::get('/', [BookingController::class, 'index'])->name('index');
         Route::post('/bookings/store', [BookingController::class, 'store'])->name('store');
+        Route::post('/bookings/getData', [BookingController::class, 'get_data'])->name('getdata');
+        Route::get('/bookings/{id}', [BookingController::class, 'view'])->name('view');
     });
 
     Route::resource('patients', PatientController::class);
@@ -120,6 +122,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
 
 // Route::post('/logout', [UserController::class, 'logout'])->name('logout');
 Auth::routes();
+
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
@@ -133,4 +136,5 @@ Route::prefix('user')->name('user.')->middleware(['auth','user-role:user'])->gro
     Route::put('edit-member', [UserController::class, 'edit_member'])->name('family.edit');
     Route::post('book-appointment', [BookingController::class, 'user_store'])->name('bookings.store');
     Route::put('booking/cancel/{id}', [BookingController::class, 'user_cancel'])->name('bookings.cancel');
+    Route::get('booking/view/{id}', [BookingController::class, 'user_view'])->name('bookings.view');
 });

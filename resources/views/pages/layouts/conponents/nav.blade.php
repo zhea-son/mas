@@ -51,10 +51,10 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="" class="nav-link {{ request()->routeIs('admin.shop.*') ? 'active' : '' }}">
+    <a href="/admin/bookings" class="nav-link {{ request()->routeIs('admin.bookings.*') ? 'active' : '' }}">
         <i class="icon icon-cart"></i>
         <span>
-            Shop
+            Bookings
         </span>
     </a>
 </li>
