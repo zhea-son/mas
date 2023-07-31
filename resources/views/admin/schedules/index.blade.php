@@ -8,7 +8,37 @@
 
 <div class="container">
   @if(Route::currentRouteName() == 'admin.schedule.index')<a type="button" class="btn btn-primary" href="{{ route('admin.schedule.create') }}">+ Add Schedule</a>@endif
-    <input class="form-control" id="inputSearch" style="width:300px;float:right;" type="text" placeholder="Search">
+  <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+    <div class="d-flex">
+        <div class="breadcrumb">
+            <input type="text" class="form-control my-2" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
+
+        </div>
+
+        <a href="#" class="header-elements-toggle text-body d-lg-none"><i class="icon-more"></i></a>
+    </div>
+
+    <div class="header-elements d-none">
+        <div class="breadcrumb justify-content-center">
+            
+            <a href="#" class="breadcrumb-elements-item" onclick="getData('today')">
+                <i class="icon-comment-discussion mr-2"></i>
+                Today
+            </a>
+
+            <a href="#" class="breadcrumb-elements-item" onclick="getData('month')">
+                <i class="icon-comment-discussion mr-2"></i>
+                Month
+            </a>
+
+            <a href="#" class="breadcrumb-elements-item" onclick="getData('year')">
+                <i class="icon-comment-discussion mr-2"></i>
+                Year
+            </a>
+
+        </div>
+    </div>
+</div>
 <table class="table table-striped">
     <thead>
       <tr>

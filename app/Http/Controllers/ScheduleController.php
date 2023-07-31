@@ -58,7 +58,6 @@ class ScheduleController extends Controller
             'to' => 'required',
             'time_frame' => 'required',
         ]);
-        if($request->date < Carbon::now()){}
         $schedules = Schedule::where('doctor_id',$request->doctor)->whereDate('date',$request->date)->first();
         if($schedules != null){
         if (($request->from<$schedules->from && $request->to<$schedules->from) || ($request->from > $schedules->to && $request->to > $schedules->to)){
@@ -71,18 +70,18 @@ class ScheduleController extends Controller
         $schedule->time_frame = $request['time_frame'];
         $saved = $schedule->save();
         if($saved){
-            $from = Carbon::parse($schedule->from);
-            $to = Carbon::parse($schedule->to);
+            $from = Carbon::parse($schedule->from,'UTC');
+            $to = Carbon::parse($schedule->to,'UTC');
             $difference = ($from->diffInMinutes($to) / $schedule->time_frame);
             for($i=1;$i<=$difference;$i++){
                 $appointment = new Appointment;
                 $appointment->schedule_id = $schedule->id;
-                $appointment->from = $from->format('H:i:s');
-                $appointment->to = gmdate("H:i:s",strtotime($from) + ($schedule->time_frame*60));
+                $appointment->from = $from->format('H:i');
+                $appointment->to = $from->copy()->addMinutes($schedule->time_frame)->format('H:i');
                 $appointment->save();
-                $from = Carbon::parse($appointment->to);
+                $from = Carbon::parse($appointment->to,'UTC');
             }
-        }  
+        } 
         return redirect()->route('admin.schedule.index');
         }else{
             return response()->json(["Doctor already has schedule."]);
@@ -91,22 +90,22 @@ class ScheduleController extends Controller
         $schedule = new Schedule();
         $schedule->doctor_id = $request['doctor'];
         $schedule->dept_id = $request['department'];
-        $schedule->from = $request['from'];
-        $schedule->to = $request['to'];
+        $schedule->from = Carbon::parse($request['from'],'UTC')->format('H:i');
+        $schedule->to = Carbon::parse($request['to'],'UTC')->format('H:i');
         $schedule->date = $request['date'];
         $schedule->time_frame = $request['time_frame'];
         $saved = $schedule->save();
         if($saved){
-            $from = Carbon::parse($schedule->from);
-            $to = Carbon::parse($schedule->to);
+            $from = Carbon::parse($schedule->from,'UTC');
+            $to = Carbon::parse($schedule->to,'UTC');
             $difference = ($from->diffInMinutes($to) / $schedule->time_frame);
             for($i=1;$i<=$difference;$i++){
                 $appointment = new Appointment;
                 $appointment->schedule_id = $schedule->id;
-                $appointment->from = $from->format('H:i:s');
-                $appointment->to = gmdate("H:i:s",strtotime($from) + ($schedule->time_frame*60));
+                $appointment->from = $from->format('H:i');
+                $appointment->to = $from->copy()->addMinutes($schedule->time_frame)->format('H:i');
                 $appointment->save();
-                $from = Carbon::parse($appointment->to);
+                $from = Carbon::parse($appointment->to,'UTC');
             }
         }  
         return redirect()->route('admin.schedule.index');
