@@ -23,14 +23,14 @@
                     Today
                 </a>
 
-                <a href="#" class="breadcrumb-elements-item" onclick="getData('month')">
+                <a href="#" class="breadcrumb-elements-item" onclick="getData('tomorrow')">
                     <i class="icon-comment-discussion mr-2"></i>
-                    Month
+                    Tomorrow
                 </a>
 
-                <a href="#" class="breadcrumb-elements-item" onclick="getData('year')">
+                <a href="#" class="breadcrumb-elements-item" onclick="getData('week')">
                     <i class="icon-comment-discussion mr-2"></i>
-                    Year
+                    This week
                 </a>
 
             </div>
@@ -82,7 +82,7 @@
                 @endif
             </td>    
         </tr>
-            @endforeach
+        @endforeach
     </tbody>
 </table>
 </div>
@@ -94,7 +94,6 @@
 <script>
 
     $("#inputSearch").keyup(function(){
-        console.log("Hi");
       var search = $(this).val().toLowerCase();
       $("#myTable tr").filter(function(){
         $(this).toggle($(this).text().toLowerCase().indexOf(
@@ -115,7 +114,7 @@ function getData(value){
                     status: value
                 },
                 success: function(response) {
-
+                    console.log(response);
                 }
             });
 

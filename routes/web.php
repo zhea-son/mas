@@ -109,9 +109,9 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
 
     Route::prefix('bookings')->name('bookings.')->group(function(){
         Route::get('/', [BookingController::class, 'index'])->name('index');
-        Route::post('/bookings/store', [BookingController::class, 'store'])->name('store');
-        Route::post('/bookings/getData', [BookingController::class, 'get_data'])->name('getdata');
-        Route::get('/bookings/{id}', [BookingController::class, 'view'])->name('view');
+        Route::post('/store', [BookingController::class, 'store'])->name('store');
+        Route::get('/getData', [BookingController::class, 'get_data'])->name('getdata');
+        Route::get('/{id}', [BookingController::class, 'view'])->name('view');
     });
 
     Route::resource('patients', PatientController::class);

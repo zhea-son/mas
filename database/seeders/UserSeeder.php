@@ -27,8 +27,48 @@ class UserSeeder extends Seeder
         DB::table('users')->insert([
             'name' => 'Priya Thapa',
             'email' => 'priya@mas.com',
-            'contact' => '9809229946',
-            'address' => 'Bharatpur, Nepal',
+            'contact' => '9818632951',
+            'address' => 'Rajahar',
+            'password' => Hash::make('password'),
+            'role'=> 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Alisha Shrestha',
+            'email' => 'alisha@mas.com',
+            'contact' => '9801122356',
+            'address' => 'Kawasati',
+            'password' => Hash::make('password'),
+            'role'=> 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Pretty Thapa',
+            'email' => 'pretty@mas.com',
+            'contact' => '9847433811',
+            'address' => 'Rajahar',
+            'password' => Hash::make('password'),
+            'role'=> 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Seema Bhusal',
+            'email' => 'seema@mas.com',
+            'contact' => '9801122334',
+            'address' => 'Kawasati',
+            'password' => Hash::make('password'),
+            'role'=> 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Prabesh Thapa',
+            'email' => 'prabesh@mas.com',
+            'contact' => '9821346789',
+            'address' => 'Imadol',
+            'password' => Hash::make('password'),
+            'role'=> 0,
+        ]);
+        DB::table('users')->insert([
+            'name' => 'Roshan Poudel',
+            'email' => 'roshan@mas.com',
+            'contact' => '9821346001',
+            'address' => 'Amarapuri',
             'password' => Hash::make('password'),
             'role'=> 0,
         ]);
