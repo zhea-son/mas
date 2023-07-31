@@ -157,11 +157,17 @@ class BookingController extends Controller
 
     public function get_data(Request $request){
         $date = Carbon::now();
-        if (auth()->user()->role == 'SuperAdmin') {
+        $sids = [];
             if ($request->status == 'today') {
                 $schedules = Schedule::whereDate('date', $date)->get();
-                $apps = Appointment::where('schedule_id',$schedules->id)->get();
+                foreach($schedules as $schedule){
+                    $sids[] = $schedule->id;
+                }
+                $bookings = Booking::whereHas('appointment',function($query)use($sids){
+                    $query->whereIn('schedule_id',$sids[]);
+                })->where('status', '!=' , "canceled")->get();
             }
-        }
+            $data = collect(['bookings' => $bookings]);
+            return response()->json($data);
     }
 }

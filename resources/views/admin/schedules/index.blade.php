@@ -8,7 +8,7 @@
 
 <div class="container">
   @if(Route::currentRouteName() == 'admin.schedule.index')<a type="button" class="btn btn-primary" href="{{ route('admin.schedule.create') }}">+ Add Schedule</a>@endif
-  <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline">
+  <div class="breadcrumb-line breadcrumb-line-light header-elements-lg-inline mt-2">
     <div class="d-flex">
         <div class="breadcrumb">
             <input type="text" class="form-control my-2" style="width:300px;float:right;" placeholder="Search" id="inputSearch">
@@ -49,6 +49,7 @@
         <th scope="col">Time Frame</th>
         <th scope="col">Start Time</th>
         <th scope="col">End Time</th>
+        <th scope="col">Booked</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -67,6 +68,7 @@
         <td>{{ $schedule->time_frame }} minutes</td>
         <td>{{ $schedule->from }}</td>
         <td>{{ $schedule->to }}</td>
+        <td><span class="badge badge-secondary">{{ $schedule->appointments->where('booked', true)->count() }}</span></td>
         <td style="display:flex;">
             @if(Route::currentRouteName() == "admin.schedule.index")<a type="button" class="btn btn-info" href="{{ route('admin.schedule.appointments', $schedule->id) }}">View Appointments</a>@else
             <a type="button" class="btn btn-info" href="{{ route('admin.checkups.appointments', $schedule->id) }}">View Appointments</a>@endif
