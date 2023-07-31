@@ -29,8 +29,8 @@
             <td>{{ $item->address }}</td>    
             <td>{{ $item->dob }}</td>    
             <td>{{ $item->contact }}</td>    
-            <td>{{ $item->relation }}</td>    
-            <td>{{ $item->user->name }}</td>    
+            @isset($item->user)<td>{{ $item->relation }}</td>@else<td>Self</td>@endif    
+            @isset($item->user)<td>{{ $item->user->name }}</td>@else<td>No User</td>@endif    
                
         </tr>
             @endforeach

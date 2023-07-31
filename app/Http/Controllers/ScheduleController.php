@@ -53,11 +53,12 @@ class ScheduleController extends Controller
         $request->validate([
             'doctor' => 'required',
             'department' => 'required',
-            'date' => 'required',
+            'date' => 'required|after:yesterday',
             'from' => 'required',
             'to' => 'required',
             'time_frame' => 'required',
         ]);
+        if($request->date < Carbon::now()){}
         $schedules = Schedule::where('doctor_id',$request->doctor)->whereDate('date',$request->date)->first();
         if($schedules != null){
         if (($request->from<$schedules->from && $request->to<$schedules->from) || ($request->from > $schedules->to && $request->to > $schedules->to)){

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Carbon\Carbon;
 use App\Models\Booking;
 use App\Models\Patient;
+use App\Models\Schedule;
 use App\Models\Appointment;
 use Illuminate\Http\Request;
 
@@ -16,7 +18,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::all();
+        return view('admin.bookings.index', compact('bookings'));
     }
 
     /**
@@ -149,6 +152,16 @@ class BookingController extends Controller
             $booking->status = "canceled";
             $booking->save();
             return redirect()->route('user.bookings');
+        }
+    }
+
+    public function get_data(Request $request){
+        $date = Carbon::now();
+        if (auth()->user()->role == 'SuperAdmin') {
+            if ($request->status == 'today') {
+                $schedules = Schedule::whereDate('date', $date)->get();
+                $apps = Appointment::where('schedule_id',$schedules->id)->get();
+            }
         }
     }
 }

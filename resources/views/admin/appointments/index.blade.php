@@ -95,7 +95,6 @@ function get_id(button){
   var itemId = bid.replace('book_button_', '');
   var app_id = document.getElementById('appointment_id');
   app_id.value = itemId;
-  console.log(itemId);
 }
 
 </script>
