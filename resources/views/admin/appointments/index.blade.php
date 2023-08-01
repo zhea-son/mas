@@ -34,7 +34,7 @@
         </td>
         <td style="display:flex;">
           @if($item->booked == 1)
-          <a type="button" class="btn btn-info" href="{{ route('admin.bookings.view', $item->id) }}">View Booking</a>
+          <a type="button" class="btn btn-info" href="{{ route('admin.bookings.view', $item->booking->id) }}">View Booking</a>
           
           <form method="POST" action="{{ route('admin.appointment.cancel', $item->id) }}">
             @csrf

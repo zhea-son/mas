@@ -11,7 +11,7 @@
       </div>
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/building1.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/building1.jpg" style="object-fit: cover;" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
           <div class="container">
             <div class="carousel-caption text-start">
               <h1><b>Where Expertise Meets Empathy</b></h1>
@@ -22,7 +22,7 @@
         </div>
         
         <div class="carousel-item">
-          <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/operation4.jpg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <img class="bd-placeholder-img" width="100%" height="600px" src="/assets/images/operation4.jpg" style="object-fit: cover;" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
           <div class="container">
             <div class="carousel-caption text-end">
               <h1><b>Your Journey to Better Health Starts Here</b></h1>

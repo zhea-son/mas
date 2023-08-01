@@ -18,7 +18,14 @@ class BookingController extends Controller
      */
     public function index()
     {
-        $bookings = Booking::all();
+        $schedules = Schedule::whereDate('date', Carbon::now()->format('Y-m-d') )->get();
+        $sids = [];
+        foreach($schedules as $a){
+            $sids[] = $a->id;
+        }
+        $bookings = Booking::whereHas('appointment', function($query) use ($sids){
+            $query->whereIn('schedule_id', $sids);
+        })->latest()->get();
         return view('admin.bookings.index', compact('bookings'));
     }
 
@@ -84,6 +91,7 @@ class BookingController extends Controller
     public function show($id)
     {
         $booking = Booking::find($id);
+        // return $booking;
         return view('admin.bookings.view', compact('booking'));
     }
 
@@ -127,6 +135,19 @@ class BookingController extends Controller
             'patient_id' => 'required',
             'remarks' => 'required',
         ]);
+        $booking = Booking::where('appointment_id', $request->appointment_id)->where('status', 'canceled')->first();
+        if($booking != null){
+            $booking->patient_id = $request->patient_id;
+            $booking->remarks = $request->remarks;
+            $booking->status = "pending";
+            $saved = $booking->save();
+            if($saved){
+                $appointment = Appointment::find($request->appointment_id);
+                $appointment->booked = 1;
+                $appointment->save();
+                return redirect()->route('user.bookings');
+            }
+        }else{
         $booking = new Booking;
         $booking->patient_id = $request->patient_id;
         $booking->appointment_id = $request->appointment_id;
@@ -139,6 +160,7 @@ class BookingController extends Controller
             $appointment->save();
             return redirect()->route('user.bookings');
         }
+    }
         return response()->json(["Not booked"]);
     }
 

@@ -8,7 +8,12 @@
 @include('partials._date_search')
 <div class="container">
     <div class="content">
-        <div class="row my-2">
+      @if(count($schedules) == 0)
+      <div class="row mt-5" >
+        <h6 class="">No Schedules Found.</h6>
+      </div>
+      @endif
+        <div class="row my-5">
             @foreach ($schedules as $schedule)
                 
             <div class="col-lg-4">
@@ -17,6 +22,7 @@
                         {{ $schedule->department->department }}
                     </div>
                     <div class="card-body">
+                      <img src="/assets/images/doctor1.jpg" style="object-fit:contain" height="200px" width="100%">
                         <h5 class="card-title">Dr. {{ $schedule->doctor->name }}</h5>
                         <p class="card-text">{{ $schedule->doctor->specialization->specialization }}</p>
                         <div class="accordion accordion-flush" id="accordionFlushExample">
@@ -85,7 +91,7 @@
 
       </div>
     </div>
-  </div>
+</div>
 
 @endsection
 

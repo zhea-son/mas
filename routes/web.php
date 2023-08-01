@@ -80,12 +80,12 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::get('/edit/{schedule}', [ScheduleController::class, 'edit'])->name('schedule.edit');
         Route::put('/update/{schedule}', [ScheduleController::class, 'update'])->name('schedule.update');
         Route::delete('/delete/{schedule}', [ScheduleController::class, 'destroy'])->name('schedule.destroy');
-        Route::get('/appointments/{id}', [ScheduleController::class, 'view_appointments'])->name('schedule.appointments');
+        Route::get('/{id}/appointments', [ScheduleController::class, 'view_appointments'])->name('schedule.appointments');
         Route::put('/complete/{id}', [ScheduleController::class, 'complete'])->name('schedule.complete');
     });
 
     Route::get('/checkups', [ScheduleController::class, 'checkups'])->name('checkups.index');
-    Route::get('/checkups/appointments/{id}', [ScheduleController::class, 'view_completed_appointments'])->name('checkups.appointments');
+    Route::get('/checkups/{id}/appointments', [ScheduleController::class, 'view_completed_appointments'])->name('checkups.appointments');
 
     Route::prefix('routine')->group(function() {
         Route::get('/', [RoutineController::class, 'index'])->name('routine.index');
@@ -111,7 +111,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::get('/', [BookingController::class, 'index'])->name('index');
         Route::post('/store', [BookingController::class, 'store'])->name('store');
         Route::get('/getData', [BookingController::class, 'get_data'])->name('getdata');
-        Route::get('/{id}', [BookingController::class, 'show'])->name('view');
+        Route::get('/{id}/view', [BookingController::class, 'show'])->name('view');
     });
 
     Route::resource('patients', PatientController::class);
@@ -135,6 +135,6 @@ Route::prefix('user')->name('user.')->middleware(['auth','user-role:user'])->gro
     Route::get('edit-member/{id}', [UserController::class, 'show_edit'])->name('family.show.edit');
     Route::put('edit-member', [UserController::class, 'edit_member'])->name('family.edit');
     Route::post('book-appointment', [BookingController::class, 'user_store'])->name('bookings.store');
-    Route::put('booking/cancel/{id}', [BookingController::class, 'user_cancel'])->name('bookings.cancel');
-    Route::get('my-bookings/{id}', [BookingController::class, 'user_view'])->name('bookings.view');
+    Route::put('booking/{id}/cancel', [BookingController::class, 'user_cancel'])->name('bookings.cancel');
+    Route::get('my-bookings/{id}/view', [BookingController::class, 'user_view'])->name('bookings.view');
 });

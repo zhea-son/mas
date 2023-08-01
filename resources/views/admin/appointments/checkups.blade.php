@@ -35,7 +35,7 @@
         <td>@if(isset($item->booking) && $item->booking->status != "canceled"){{ $item->booking->remarks }}@else No Remarks @endif</td>
         
         <td style="display:flex;">
-            <a type="button" class="btn btn-info" href="{{ route('admin.appointment.show', $item->id) }}">View</a>
+            <a type="button" class="btn btn-info" @if(isset($item->booking))href="{{ route('admin.bookings.view', $item->booking->id) }}"@endif >View</a>
         </td>
       </tr>
       @endforeach
