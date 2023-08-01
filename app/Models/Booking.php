@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Patient;
 use App\Models\Appointment;
 use App\Models\Prescription;
 use Illuminate\Database\Eloquent\Model;

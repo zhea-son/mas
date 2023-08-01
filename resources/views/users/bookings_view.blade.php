@@ -1,5 +1,5 @@
 
-@extends('pages.layouts.master')
+@extends('layouts.main')
 
 
 
@@ -12,8 +12,8 @@
         <div class="card my-5 mr-5">
         <div class="card-header">
             <h1 class="card-title">Booking Details </h1>
-            <h3 class="card-title"><span class="badge badge-info">{{$booking->appointment->from}}</span> - <span class="badge badge-info">{{$booking->appointment->to}}</span> </h3>
-            <h3 class="card-title"><span class="badge badge-info">Date:{{$booking->appointment->schedule->date}}</span> </h3>
+            <h4 class="card-title"><span >{{$booking->appointment->schedule->date}}</span> </h4>
+            <h4 class="card-title"><span >{{$booking->appointment->from}}</span> - <span >{{$booking->appointment->to}}</span>  </h4>
             <h6 class="card-title">{{ $booking->appointment->schedule->department->department }}</span></h6>
         </div>
  

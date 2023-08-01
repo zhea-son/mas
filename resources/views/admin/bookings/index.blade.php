@@ -72,7 +72,7 @@
                 @endif --}}
             </td>    
             <td style="display:flex;">
-                <a style="margin-left:5px;" href="" type="button" class="btn btn-info">View</a>
+                <a style="margin-left:5px;" href="/admin/bookings/{{$item->id}}" type="button" class="btn btn-info">View</a>
                 @if($item->status == "pending")
                 <form action="{{route('user.bookings.cancel', $item->id)}}" method="POST">
                     @csrf

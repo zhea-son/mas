@@ -33,8 +33,15 @@
             <span class="badge {{ $item->booked == 0 ? 'badge-warning' : 'badge-success' }} my-3 my-lg-0 ml-lg-3">{{ $item->booked == 0 ? 'Open' : 'Booked' }}</span>
         </td>
         <td style="display:flex;">
-            <a type="button" class="btn btn-info" href="{{ route('admin.appointment.show', $item->id) }}">View</a>
-            @if($item->booked == 0)
+          @if($item->booked == 1)
+          <a type="button" class="btn btn-info" href="{{ route('admin.bookings.view', $item->id) }}">View Booking</a>
+          
+          <form method="POST" action="{{ route('admin.appointment.cancel', $item->id) }}">
+            @csrf
+            <button role="submit" style="margin-left:5px;" class="btn btn-warning">Cancel</button>
+          </form>
+
+          @else
             <button type="button" class="btn btn-success" style="margin-left:5px;" id="book_button_{{$item->id}}" onclick="get_id(this)" data-toggle="modal" data-target="#modal_example">Book</button>
 
             <div id="modal_example" class="modal fade" tabindex="-1" style="display: hide;" aria-modal="true" role="dialog">
@@ -67,17 +74,26 @@
               </div>
             </div>
 
-            @else
-            <form method="POST" action="{{ route('admin.appointment.cancel', $item->id) }}">
-              @csrf
-              <button role="submit" style="margin-left:5px;" class="btn btn-warning">Cancel</button>
-            </form>
+            
+            
             @endif
         </td>
       </tr>
       @endforeach
     </tbody>
 </table>
+
+<div class="card card-body mt-5 text-center">
+
+  <ul class="pagination align-self-center">
+    <li class="page-item"><a href="#" class="page-link">← &nbsp; Prev</a></li>
+    <li class="page-item active"><a href="#" class="page-link">1</a></li>
+    <li class="page-item"><a href="#" class="page-link">2</a></li>
+    <li class="page-item disabled"><a href="#" class="page-link">3</a></li>
+    <li class="page-item"><a href="#" class="page-link">4</a></li>
+    <li class="page-item"><a href="#" class="page-link">Next &nbsp; →</a></li>
+  </ul>
+</div>
 
 </div>
 

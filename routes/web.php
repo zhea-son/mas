@@ -111,7 +111,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
         Route::get('/', [BookingController::class, 'index'])->name('index');
         Route::post('/store', [BookingController::class, 'store'])->name('store');
         Route::get('/getData', [BookingController::class, 'get_data'])->name('getdata');
-        Route::get('/{id}', [BookingController::class, 'view'])->name('view');
+        Route::get('/{id}', [BookingController::class, 'show'])->name('view');
     });
 
     Route::resource('patients', PatientController::class);
@@ -136,5 +136,5 @@ Route::prefix('user')->name('user.')->middleware(['auth','user-role:user'])->gro
     Route::put('edit-member', [UserController::class, 'edit_member'])->name('family.edit');
     Route::post('book-appointment', [BookingController::class, 'user_store'])->name('bookings.store');
     Route::put('booking/cancel/{id}', [BookingController::class, 'user_cancel'])->name('bookings.cancel');
-    Route::get('booking/view/{id}', [BookingController::class, 'user_view'])->name('bookings.view');
+    Route::get('my-bookings/{id}', [BookingController::class, 'user_view'])->name('bookings.view');
 });
