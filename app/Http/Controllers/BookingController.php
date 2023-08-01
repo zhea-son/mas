@@ -81,9 +81,10 @@ class BookingController extends Controller
      * @param  \App\Models\Booking  $booking
      * @return \Illuminate\Http\Response
      */
-    public function show(Booking $booking)
+    public function show($id)
     {
-        //
+        $booking = Booking::find($id);
+        return view('admin.bookings.view', compact('booking'));
     }
 
     /**
@@ -169,5 +170,10 @@ class BookingController extends Controller
             }
             $data = collect(['bookings' => $bookings]);
             return response()->json($data);
+    }
+
+    public function user_view($id){
+        $booking = Booking::find($id);
+        return view('users.bookings_view', compact('booking'));
     }
 }
