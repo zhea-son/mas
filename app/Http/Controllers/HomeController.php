@@ -52,7 +52,11 @@ class HomeController extends Controller
         $doctors = Doctor::all();
         $departments = Department::all();
         $schedules = Schedule::where('complete',0)->with('doctor','appointments')->latest()->get();
-        $family = Patient::where('user_id', Auth::user()->id)->get();
+        if(auth()->check())
+        {$family = Patient::where('user_id', Auth::user()->id)->get();
+        }else{
+            $family =[];
+        }
         return view('pages.schedules', compact('doctors','departments','schedules','family'));
     }
     public function routines()
@@ -68,9 +72,13 @@ class HomeController extends Controller
         $departments = Department::all();
         $topdept = Department::withCount('schedules')
             ->orderByDesc('schedules_count')->get();
-        $schedules = Schedule::where('complete',0)->latest()->get();
-        // return $topdept;
-        return view('pages.appointments',compact('schedules','doctors','departments','topdept'));
+        $schedules = Schedule::whereBetween('date', [Carbon::now()->startOfWeek(), Carbon::now()->endOfWeek()])->where('complete',0)->latest()->get();
+        if(auth()->check())
+        {$family = Patient::where('user_id', Auth::user()->id)->get();
+        }else{
+            $family =[];
+        }
+        return view('pages.appointments',compact('family','schedules','doctors','departments','topdept'));
     }
     public function search_date(Request $request){
         $oldvalues['search_name'] = "";
@@ -108,7 +116,11 @@ class HomeController extends Controller
         else{
             return "Not valid!! Select either doctor or department.";
         }
-        $family = Patient::where('user_id', Auth::user()->id)->get();
+        if(auth()->check())
+        {$family = Patient::where('user_id', Auth::user()->id)->get();
+        }else{
+            $family =[];
+        }
 
         $doctors = Doctor::all();
         $departments = Department::all();

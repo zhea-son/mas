@@ -73,21 +73,21 @@
             @if(Route::currentRouteName() == "admin.schedule.index")<a type="button" class="btn btn-info" href="{{ route('admin.schedule.appointments', $schedule->id) }}">View Appointments</a>@else
             <a type="button" class="btn btn-info" href="{{ route('admin.checkups.appointments', $schedule->id) }}">View Appointments</a>@endif
             @if(Route::currentRouteName() == "admin.schedule.index")
-            @if(Carbon\Carbon::parse($schedule->date.$schedule->to) > Carbon\Carbon::now() && Carbon\Carbon::parse($schedule->date.$schedule->from) > Carbon\Carbon::now())
-            <form action="{{route('admin.schedule.destroy', $schedule->id)}}" method="POST">
-                @csrf
-                @method('DELETE')
-                <button style="margin-left:5px;" type="submit" class="btn btn-danger">Delete</button>
-            </form>
-            @elseif(Carbon\Carbon::parse($schedule->date.$schedule->to) > Carbon\Carbon::now() && Carbon\Carbon::parse($schedule->date.$schedule->from) < Carbon\Carbon::now())
-            <button style="margin-left:5px;" type="button" class="btn btn-secondary" disabled>Running</button>
-            @else 
-            <form action="{{route('admin.schedule.complete', $schedule->id)}}" method="POST">
-              @csrf
-              @method('PUT')
-              <button style="margin-left:5px" type="submit" class="btn btn-warning">Complete</button>
-            </form>
-            @endif
+              @if(Carbon\Carbon::parse($schedule->date.$schedule->to) > Carbon\Carbon::now() && Carbon\Carbon::parse($schedule->date.$schedule->from) > Carbon\Carbon::now())
+                <form action="{{route('admin.schedule.destroy', $schedule->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button style="margin-left:5px;" type="submit" class="btn btn-danger">Delete</button>
+                </form>
+              @elseif(Carbon\Carbon::parse($schedule->date.$schedule->to) > Carbon\Carbon::now() && Carbon\Carbon::parse($schedule->date.$schedule->from) < Carbon\Carbon::now())
+                <button style="margin-left:5px;" type="button" class="btn btn-secondary" disabled>Running</button>
+              @else 
+                <form action="{{route('admin.schedule.complete', $schedule->id)}}" method="POST">
+                  @csrf
+                  @method('PUT')
+                  <button style="margin-left:5px" type="submit" class="btn btn-warning">Complete</button>
+                </form>
+              @endif
             @endif
         </td>
       </tr>

@@ -19,6 +19,7 @@
     <link href="{{ asset('dashboard/assets/css/layout.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('dashboard/assets/css/components.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('dashboard/assets/css/colors.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
 
 </head>
 
@@ -179,9 +180,7 @@
     <script src="{{ asset('dashboard/global_assets/js/demo_charts/pages/dashboard/light/bullets.js') }}"></script>
     <!-- /theme JS files -->
 
-    <script src="{{ asset('dashboard/global_assets/js/plugins/tables/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('dashboard/global_assets/js/plugins/tables/datatables/extensions/buttons.min.js') }}"></script>
-    <script src="{{ asset('dashboard/global_assets/js/demo_pages/datatables_extension_colvis.js') }}"></script>
+    <script src="cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
     <script src="{{ asset('dashboard/global_assets/js/plugins/notifications/pnotify.min.js') }}"></script>
     <script src="{{ asset('dashboard/global_assets/js/demo_pages/extra_pnotify.js') }}"></script>
     <script src="{{ asset('dashboard/assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
@@ -213,49 +212,6 @@
     <script>
         $(document).ready(function() {
             $("#pnotify-solid-warning").trigger('click');
-        });
-    </script>
-
-
-
-    <script>
-        $(document).ready(function() {
-            $('#table1').DataTable({
-                columnDefs: [{
-                    type: 'nepali-numbers',
-                    targets: 0
-                }]
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#table2').DataTable({
-                columnDefs: [{
-                    type: 'nepali-numbers',
-                    targets: 0
-                }]
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#table3').DataTable({
-                columnDefs: [{
-                    type: 'nepali-numbers',
-                    targets: 0
-                }]
-            });
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
-            $('#table_4').DataTable({
-                columnDefs: [{
-                    type: 'nepali-numbers',
-                    targets: 0
-                }]
-            });
         });
     </script>
 
