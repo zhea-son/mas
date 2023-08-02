@@ -18,6 +18,7 @@
             position: relative;
             display: inline-block;
             width:100%;
+            height:100%;
         }
 
         .overlay {
@@ -31,7 +32,6 @@
         justify-content: center;
         align-items: center;
         z-index: 1; /* Ensure the overlay appears on top of the image */
-        pointer-events: none; /* Allows clicking through the overlay to interact with the image */
         }
 
     </style>
