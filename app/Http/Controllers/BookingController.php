@@ -191,7 +191,7 @@ class BookingController extends Controller
                 })->where('status', '!=' , "canceled")->get();
             }
             $data = collect(['bookings' => $bookings]);
-            return response()->json($data);
+            return response()->json([$data]);
     }
 
     public function user_view($id){

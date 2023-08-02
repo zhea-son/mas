@@ -110,7 +110,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth','user-role:admin'])->
     Route::prefix('bookings')->name('bookings.')->group(function(){
         Route::get('/', [BookingController::class, 'index'])->name('index');
         Route::post('/store', [BookingController::class, 'store'])->name('store');
-        Route::get('/getData', [BookingController::class, 'get_data'])->name('getdata');
+        Route::get('/getData?date={date}', [BookingController::class, 'get_data'])->name('getdata');
         Route::get('/{id}/view', [BookingController::class, 'show'])->name('view');
     });
 

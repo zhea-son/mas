@@ -13,6 +13,29 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
+    <style>
+        .image-container {
+            position: relative;
+            display: inline-block;
+            width:100%;
+            height:100%;
+        }
+
+        .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 690px;
+        background-color: rgba(0, 0, 0, 0.5); /* You can change the color and opacity here */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 1; /* Ensure the overlay appears on top of the image */
+        }
+
+    </style>
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
@@ -72,8 +95,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <main class="image-container">
+            <img src="assets/images/building2.jpg" height="690px" width="100%" style="object-fit: cover;">
+            <div class="overlay">
+                @yield('content')
+            </div>   
         </main>
     </div>
 </body>
