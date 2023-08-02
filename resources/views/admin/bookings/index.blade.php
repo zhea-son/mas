@@ -1,6 +1,6 @@
 @extends('pages.layouts.master')
 
-@section('title', "All Bookings")
+@section('title', "Today's Bookings")
 
 
 @section('content')
@@ -111,10 +111,11 @@ function getData(value){
                 url: "{{ route('admin.bookings.getdata') }}",
                 type: 'get',
                 data: {
-                    status: value
+                    status: value,
+                    _token: '{{ csrf_token() }}'
                 },
                 success: function(response) {
-                    console.log(response);
+                    console.log("Ok");
                 }
             });
 

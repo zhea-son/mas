@@ -12,9 +12,7 @@
           <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteName() == 'pages.appointments' ? 'active' : '' }}" href="{{ route('pages.appointments') }}">Appointments</a>
           </li>
-          <li class="nav-item">
-            <a class="nav-link {{ Route::currentRouteName() == 'pages.shop' ? 'active' : '' }}" href="{{ route('pages.shop') }}">Shop</a>
-          </li>
+          
           <li class="nav-item">
             <a class="nav-link {{ Route::currentRouteName() == 'pages.contact' ? 'active' : '' }}" href="{{ route('pages.contact') }}">Contact</a>
           </li>
